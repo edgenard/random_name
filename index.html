@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Name Generator</title>
+</head>
+<body>
+
+    <h1>The Random Student Picker chooses:</h1>
+
+    <h2 id="choice">Name: </h2>
+    <button id="chooser">Choose a student</button>
+
+    <script src="randomPicker.js"></script>
+    <script>
+        var element, button;
+        element = document.getElementById("choice");
+        button = document.getElementById("chooser");
+
+        button.addEventListener("click", function (e) {
+            e.preventDefault()
+            element.innerHTML = picker();
+        })
+    </script>
+</body>
+</html>
