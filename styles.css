@@ -1,0 +1,37 @@
+body{
+    background: #002680;
+    font-family: Sans-serif;
+    color: #fff;
+
+}
+
+main {
+    margin: 100px auto;
+
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+
+h1 {
+    color: #FFCB05;
+}
+
+button{
+    font-size: 20px;
+    background: #FFCB05;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+button:hover {
+    background: #002680;
+    border: 1px solid #ffffff;
+}

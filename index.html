@@ -3,24 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Random Name Generator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <main>
+        <h1>The Random Student Picker Chooses:</h1>
 
-    <h1>The Random Student Picker chooses:</h1>
+        <h2 id="choice">Choice</h2>
+        <button id="chooser">Choose a student</button>
+    </main>
 
-    <h2 id="choice">Name: </h2>
-    <button id="chooser">Choose a student</button>
 
-    <script src="randomPicker.js"></script>
+
     <script>
-        var element, button;
-        element = document.getElementById("choice");
-        button = document.getElementById("chooser");
+        var studentNames = ["Emmanuella", "Dishelle", "Da'Ron", "Patience", "Travis", "Jemar", "Tia", "Garyl", "Mohammed",
+            "Maximilian", "Zaire", "Araceli", "Ashley", "Alaya", "Trevon"];
+
+        //This function uses loops to show to students how to use them.
+         function weightedStudents (students) {
+            var weighted = [];
+            var numberOfStudents = students.length;
+            for (var i = 0; i < numberOfStudents; i++) {
+                for (var j = 0; j < 3 ; j++) {
+                    weighted.push(students[i]);
+                }
+            }
+            return weighted;
+        };
+
+        var picker = function studentPicker(weightedNames){
+            var choice = Math.round(Math.random() * weightedNames.length);
+            console.log(weightedNames);
+            return weightedNames.splice(choice, 1);
+        };
+
+
+        var element = document.getElementById("choice");
+        var button = document.getElementById("chooser");
 
         button.addEventListener("click", function (e) {
-            e.preventDefault()
-            element.innerHTML = picker();
+            e.preventDefault();
+            element.innerHTML = picker(weightedStudents(studentNames));
         })
     </script>
+
+
 </body>
 </html>
