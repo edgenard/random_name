@@ -20,12 +20,12 @@
             "Maximilian", "Zaire", "Araceli", "Ashley", "Alaya", "Trevon"];
 
         //This function uses loops to show to students how to use them.
-         function weightedStudents (students) {
+         function weightedList(list) {
             var weighted = [];
-            var numberOfStudents = students.length;
-            for (var i = 0; i < numberOfStudents; i++) {
-                for (var j = 0; j < 3 ; j++) {
-                    weighted.push(students[i]);
+            var numberOfItems= list.length;
+            for (var i = 0; i < numberOfItems; i++) {
+                for (var j = 0; j < 2 ; j++) {
+                    weighted.push(list[i]);
                 }
             }
             return weighted;
@@ -40,10 +40,10 @@
 
         var element = document.getElementById("choice");
         var button = document.getElementById("chooser");
-
+        var weightedStudents = weightedList(studentNames);
         button.addEventListener("click", function (e) {
             e.preventDefault();
-            element.innerHTML = picker(weightedStudents(studentNames));
+            element.innerHTML = picker(weightedStudents);
         })
     </script>
 
