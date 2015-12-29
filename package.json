@@ -1,0 +1,22 @@
+{
+  "name": "random_student_picker",
+  "version": "0.0.1",
+  "description": "A small app that can be dropped into a web page to randomly choose a name from a list. It is weighted so that once picked a name has a smaller chance of being picked again",
+  "main": "randomPicker.js",
+  "scripts": {
+    "test": 
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgenard/random_name.git"
+  },
+  "keywords": [
+    "randomPicker"
+  ],
+  "author": "Emmanuel Genard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgenard/random_name/issues"
+  },
+  "homepage": "https://github.com/edgenard/random_name#readme"
+}
