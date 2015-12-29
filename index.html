@@ -31,10 +31,10 @@
             return weighted;
         };
 
-        var picker = function studentPicker(weightedNames){
-            var choice = Math.round(Math.random() * weightedNames.length);
-            console.log(weightedNames);
-            return weightedNames.splice(choice, 1);
+        var picker = function studentPicker(studentList){
+            var choice = Math.round(Math.random() * studentList.length);
+            console.log(studentList);
+            return studentList.splice(choice, 1);
         };
 
 
