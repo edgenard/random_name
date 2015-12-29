@@ -1,1 +1,9 @@
+## Mac OSx
+.DS_Store
+
 .idea
+
+## Browser-sync binaries
+node_modules/bufferutil/build/
+node_modules/fsevents/lib/
+node_modules/utf-8-validate/build/
