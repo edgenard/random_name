@@ -11,5 +11,6 @@
     "strict "  : true,
     "undef"    : true,
     "node"     : true,
-    "browser"  : true
+    "browser"  : true,
+    "mocha"    : true
 }
