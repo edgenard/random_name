@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var assert = require("./vendor/chai-2.1.0.js").assert;
+  var assert = require("./assert");
 
   describe("quick-test", function () {
     it("runs test", function () {
