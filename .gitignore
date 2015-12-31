@@ -7,3 +7,6 @@
 node_modules/bufferutil/build/
 node_modules/fsevents/lib/
 node_modules/utf-8-validate/build/
+
+##tern ignore
+.tern-project

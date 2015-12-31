@@ -17,9 +17,22 @@
       var element = document.createElement("div");
 
       randomName.initialize(element);
-      var firstChild = element.firstChild.nodeName;
+      var button = element.firstChild.nodeName;
 
-      assert.equal(firstChild, "BUTTON");
+      assert.equal(button, "BUTTON");
+    });
+
+    it("adds a click listener to the button", function () {
+      var element = document.createElement("div");
+
+      randomName.initialize(element);
+      var button = element.firstChild;
+      var mouseClick = document.createEvent("MouseEvent");
+      mouseClick.initEvent("click", false, true);
+
+      //When an event is triggered, if the element has an event listener and that
+      //event listener has event.preventDefault() called, it will return false
+      assert.isFalse(button.dispatchEvent(mouseClick));
     });
   });
 }());
