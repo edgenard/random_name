@@ -24,10 +24,10 @@
 
     it("adds a click listener to the button", function () {
       var element = document.createElement("div");
+      var mouseClick = document.createEvent("MouseEvent");
 
       randomName.initialize(element);
       var button = element.firstChild;
-      var mouseClick = document.createEvent("MouseEvent");
       mouseClick.initEvent("click", false, true);
 
       //When an event is triggered, if the element has an event listener and that
