@@ -29,7 +29,7 @@ gulp.task('start', function(done) {
   }, done).start();
 });
 
-gulp.task('test', function () {
+gulp.task('test',['lint'], function () {
   runner.run({
     configFile: __dirname + "/karma.conf.js"
   });
