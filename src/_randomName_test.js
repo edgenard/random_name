@@ -33,8 +33,7 @@
 
     it("adds a click listener to the button", function () {
       var element = document.createElement("div");
-      var mouseClick = document.createEvent("MouseEvent");
-      mouseClick.initEvent("click", false, true);
+      var mouseClick = setupMouseClick();
 
       randomName.initialize(element);
       var button = element.firstChild;
@@ -45,9 +44,8 @@
     });
 
     it("clicking the button removes the button and puts an input text box", function () {
-      var element = document.createElement("div");
-      var mouseClick = document.createEvent("MouseEvent");
-      mouseClick.initEvent("click", false, true);
+      var element =  document.createElement("div");
+      var mouseClick = setupMouseClick();
 
       randomName.initialize(element);
       var button = element.firstChild;
@@ -55,5 +53,27 @@
 
       assert.equal(element.firstChild.nodeName, "INPUT");
     });
+
+    it("clicking the button also puts in two other buttons", function () {
+      var element = document.createElement("div");
+      var mouseClick = setupMouseClick();
+      randomName.initialize(element);
+      var button = element.firstChild;
+
+
+      button.dispatchEvent(mouseClick);
+      var secondChild = element.children[1].nodeName;
+      var thirdChild = element.children[2].nodeName;
+
+      assert.equal(secondChild, "BUTTON");
+      assert.equal(thirdChild, "BUTTON");
+    });
   });
+
+  function setupMouseClick(){
+    var mouseClick = document.createEvent("MouseEvent");
+    mouseClick.initEvent("click", false, true);
+    return mouseClick;
+  }
+
 }());
