@@ -12,5 +12,8 @@
     "undef"    : true,
     "node"     : true,
     "browser"  : true,
-    "mocha"    : true
+    "mocha"    : true,
+    "globals"  : {
+      "KeyboardEvent" : false
+    }
 }
