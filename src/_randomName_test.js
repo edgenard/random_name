@@ -44,76 +44,62 @@
       assert.isFalse(button.dispatchEvent(mouseClick));
     });
 
-    it("clicking the button removes the button and puts an input text box", function () {
-      var element =  document.createElement("div");
-      var mouseClick = setupMouseClick();
-
-      randomName.initialize(element);
-      var button = element.firstChild;
-      button.dispatchEvent(mouseClick);
-
-      assert.equal(element.firstChild.nodeName, "INPUT");
-    });
-
-    it("clicking the button also puts in two other buttons", function () {
-      var element = document.createElement("div");
-      var mouseClick = setupMouseClick();
-      randomName.initialize(element);
-      var button = element.firstChild;
-
-
-      button.dispatchEvent(mouseClick);
-      var secondChild = element.children[1].nodeName;
-      var thirdChild = element.children[2].nodeName;
-
-      assert.equal(secondChild, "BUTTON");
-      assert.equal(thirdChild, "BUTTON");
-    });
-
-    it("the two other buttons have the write inner text", function () {
-      var element = document.createElement("div");
-      var mouseClick = setupMouseClick();
-      randomName.initialize(element);
-      var button = element.firstChild;
-
-      button.dispatchEvent(mouseClick);
-      var secondChild = element.children[1].innerHTML;
-      var thirdChild = element.children[2].innerHTML;
-
-      assert.equal(secondChild, "Add more names");
-      assert.equal(thirdChild, "Finished adding names");
-    });
-
-    it("input box listens for return key", function () {
-      var element = document.createElement("div");
-      var mouseClick = setupMouseClick();
-      randomName.initialize(element);
-      var button = element.firstChild;
-
-      button.dispatchEvent(mouseClick);
-      var input = element.firstChild;
-      var enter = setupKeyPress("Enter");
-
-
-      assert.isFalse(input.dispatchEvent(enter));
-    });
-
-    it.skip("input box doesn't affect other keys", function () {
-      var element = document.createElement("div");
-      var mouseClick = setupMouseClick();
-      randomName.initialize(element);
-      var button = element.firstChild;
-
-      button.dispatchEvent(mouseClick);
-      var input = element.firstChild;
-
-    });
-
-    //TODO:
-    //1. Add event listeners on input box and other buttons
-    //2. Write functionality of eventHandlers.
     describe("Adding Names", function () {
+      beforeEach("Setup for adding names", function () {
+        this.element = document.createElement("div");
+        var mouseClick = setupMouseClick();
+        randomName.initialize(this.element);
+        var button = this.element.firstChild;
+        button.dispatchEvent(mouseClick);
+      });
 
+      it("clicking the button removes the button and puts an input text box", function () {
+        assert.equal(this.element.firstChild.nodeName, "INPUT");
+      });
+
+      it("clicking the button also puts in two other buttons", function () {
+        var secondChild = this.element.children[1].nodeName;
+        var thirdChild = this.element.children[2].nodeName;
+
+        assert.equal(secondChild, "BUTTON");
+        assert.equal(thirdChild, "BUTTON");
+      });
+
+      it("the two other buttons have the write inner text", function () {
+        var secondChild = this.element.children[1].innerHTML;
+        var thirdChild = this.element.children[2].innerHTML;
+
+        assert.equal(secondChild, "Add more names");
+        assert.equal(thirdChild, "Finished adding names");
+      });
+
+      it("input box listens for return key", function () {
+        var input = this.element.firstChild;
+        var enter = setupKeyPress("Enter");
+
+        assert.isFalse(input.dispatchEvent(enter));
+      });
+
+      it("input doesn't listen for other keys", function () {
+        var input = this.element.firstChild;
+        var dKey = setupKeyPress("d");
+
+        assert.isTrue(input.dispatchEvent(dKey));
+      });
+
+      it("more button has event listener", function () {
+        var moreButton = this.element.children[1];
+        var mouseClick = setupMouseClick();
+
+        assert.isFalse(moreButton.dispatchEvent(mouseClick));
+      });
+
+      it("finish adding names button has event listner", function () {
+        var finishButton = this.element.children[2];
+        var mouseClick = setupMouseClick();
+
+        assert.isFalse(finishButton.dispatchEvent(mouseClick));
+      });
     });
   });
 
