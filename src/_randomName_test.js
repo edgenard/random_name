@@ -191,7 +191,7 @@
         assert.equal(numberOfNames.innerHTML, "");
       });
 
-      it("clears the input box after cliking more button", function () {
+      it("clears the input box after clicking more button", function () {
         var input = document.getElementById("name-input");
         var moreButton = document.getElementById("more-names");
         var click = setupMouseClick();
