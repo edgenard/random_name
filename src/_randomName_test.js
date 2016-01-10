@@ -62,7 +62,7 @@
         assert.equal(this.element.firstChild.nodeName, "INPUT");
       });
 
-      it.skip("input box has an id of name-input", function () {
+      it("input box has an id of name-input", function () {
         var input = document.getElementById("name-input");
 
         assert.isNotNull(input);

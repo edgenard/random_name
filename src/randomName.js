@@ -16,6 +16,7 @@
     var parent = event.currentTarget.parentElement;
     var input = document.createElement("input");
     input.setAttribute("type", "text");
+    input.setAttribute("id", "name-input");
     input.addEventListener("keypress", inputListener);
 
     parent.removeChild(parent.firstChild);
