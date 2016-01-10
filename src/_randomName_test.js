@@ -65,6 +65,18 @@
         assert.equal(thirdChild, "BUTTON");
       });
 
+      it("clicking the button adds a paragraph", function () {
+        var paragraph = this.element.children[3];
+
+        assert.equal(paragraph.nodeName, "PARAGRAPH");
+      });
+
+      it("the paragraph has a class of number-of-names", function () {
+        var paragraph = this.element.children[3];
+
+        assert.isTrue(paragraph.classList.contains("number-of-names"));
+      });
+
       it("the two other buttons have the write inner text", function () {
         var secondChild = this.element.children[1].innerHTML;
         var thirdChild = this.element.children[2].innerHTML;
@@ -100,6 +112,7 @@
 
         assert.isFalse(finishButton.dispatchEvent(mouseClick));
       });
+
     });
   });
 

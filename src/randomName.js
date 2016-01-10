@@ -16,7 +16,6 @@
       input.addEventListener("keypress", inputListener);
 
       parent.removeChild(parent.firstChild);
-      parent.appendChild(input);
 
       var moreButton = document.createElement("button");
       moreButton.addEventListener("click", function (event) {
@@ -27,10 +26,16 @@
       closeButton.addEventListener("click", function (event) {
         event.preventDefault();
       });
+
+      var nameParagraph = document.createElement("paragraph");
+      nameParagraph.classList.add("number-of-names");
+      
       moreButton.innerHTML = "Add more names";
       closeButton.innerHTML = "Finished adding names";
+      parent.appendChild(input);
       parent.appendChild(moreButton);
       parent.appendChild(closeButton);
+      parent.appendChild(nameParagraph);
     }
 
     function inputListener (event) {
