@@ -62,6 +62,12 @@
         assert.equal(this.element.firstChild.nodeName, "INPUT");
       });
 
+      it.skip("input box has an id of name-input", function () {
+        var input = document.getElementById("name-input");
+
+        assert.isNotNull(input);
+      });
+
       it("clicking the button also puts in two other buttons", function () {
         var secondChild = this.element.children[1].nodeName;
         var thirdChild = this.element.children[2].nodeName;
@@ -83,24 +89,24 @@
       });
 
       it("clicking the button adds a paragraph", function () {
-        var paragraph = this.element.children[3];
+        var paragraph = document.getElementById("number-of-names");
 
         assert.equal(paragraph.nodeName, "P");
       });
 
       it("the paragraph has an id of number-of-names", function () {
-        var paragraph = this.element.children[3];
-        var id = paragraph.getAttribute("id");
+        var paragraph = document.getElementById("number-of-names");
 
-        assert.equal(id, "number-of-names");
+
+        assert.isNotNull(paragraph);
       });
 
       it("the two other buttons have the write inner text", function () {
-        var secondChild = this.element.children[1].innerHTML;
-        var thirdChild = this.element.children[2].innerHTML;
+        var moreButton = document.getElementById("more-names");
+        var finishButton = document.getElementById("finished-with-names");
 
-        assert.equal(secondChild, "Add more names");
-        assert.equal(thirdChild, "Finished adding names");
+        assert.equal(moreButton.innerHTML, "Add more names");
+        assert.equal(finishButton.innerHTML, "Finished adding names");
       });
 
       it("input box listens for return key", function () {
