@@ -4,8 +4,8 @@ var browserSync = require('browser-sync').create();
 var Server = require('karma').Server;
 var runner = require('karma').runner;
 
-gulp.task('default', function() {
-  // place code for your default task here
+gulp.task('default',["lint"], function() {
+  console.log("\n\nBuild OK");
 });
 
 gulp.task('lint', function () {
