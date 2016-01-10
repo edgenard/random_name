@@ -1,48 +1,69 @@
 (function() {
   'use strict';
-    function initialize(element) {
-      var button = document.createElement("button");
-      element.appendChild(button);
-      button.innerHTML = "Click to add names";
-      element.classList.add("random-name-picker");
-      button.addEventListener("click", startAddingNames);
-    }
 
-    function startAddingNames(event) {
+  var NAMES = [];
+
+  function initialize(element) {
+    var button = document.createElement("button");
+    element.appendChild(button);
+    button.innerHTML = "Click to add names";
+    element.classList.add("random-name-picker");
+    button.addEventListener("click", startAddingNames);
+  }
+
+  function startAddingNames(event) {
+    event.preventDefault();
+    var parent = event.currentTarget.parentElement;
+    var input = document.createElement("input");
+    input.setAttribute("type", "text");
+    input.addEventListener("keypress", inputListener);
+
+    parent.removeChild(parent.firstChild);
+
+    var moreButton = document.createElement("button");
+    moreButton.addEventListener("click", function (event) {
       event.preventDefault();
-      var parent = event.currentTarget.parentElement;
-      var input = document.createElement("input");
-      input.setAttribute("type", "text");
-      input.addEventListener("keypress", inputListener);
+    });
 
-      parent.removeChild(parent.firstChild);
+    var closeButton = document.createElement("button");
+    closeButton.addEventListener("click", function (event) {
+      event.preventDefault();
+    });
 
-      var moreButton = document.createElement("button");
-      moreButton.addEventListener("click", function (event) {
-        event.preventDefault();
-      });
+    var nameCountParagraph = document.createElement("p");
+    nameCountParagraph.setAttribute("id", "number-of-names");
 
-      var closeButton = document.createElement("button");
-      closeButton.addEventListener("click", function (event) {
-        event.preventDefault();
-      });
+    moreButton.innerHTML = "Add more names";
+    closeButton.innerHTML = "Finished adding names";
+    parent.appendChild(input);
+    parent.appendChild(moreButton);
+    parent.appendChild(closeButton);
+    parent.appendChild(nameCountParagraph);
+  }
 
-      var nameParagraph = document.createElement("paragraph");
-      nameParagraph.classList.add("number-of-names");
-      
-      moreButton.innerHTML = "Add more names";
-      closeButton.innerHTML = "Finished adding names";
-      parent.appendChild(input);
-      parent.appendChild(moreButton);
-      parent.appendChild(closeButton);
-      parent.appendChild(nameParagraph);
+  function inputListener (event) {
+    if(event.key === "Enter" || event.keyIdentifier === "Enter"){
+      event.preventDefault();
+      var value = event.currentTarget.value;
+      if(value.length === 0) return;
+      addToNameList(value);
+      updateNameCount();
+    } else {
+      return;
     }
+  }
 
-    function inputListener (event) {
-      if(event.key === "Enter" || event.keyIdentifier === "Enter"){
-        event.preventDefault();
-      }
-    }
+  function addToNameList(name) {
+    NAMES.push(name);
+  }
+
+  function updateNameCount() {
+    var nameCountParagraph;
+    nameCountParagraph = document.getElementById("number-of-names");
+    nameCountParagraph.innerHTML = "Number of names: " + NAMES.length;
+
+  }
+
 
   exports.initialize = initialize;
 }());

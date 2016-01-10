@@ -47,10 +47,15 @@
     describe("Adding Names", function () {
       beforeEach("Setup for adding names", function () {
         this.element = document.createElement("div");
+        document.body.appendChild(this.element);
         var mouseClick = setupMouseClick();
         randomName.initialize(this.element);
         var button = this.element.firstChild;
         button.dispatchEvent(mouseClick);
+      });
+
+      afterEach("clear body", function () {
+        document.body.removeChild(this.element);
       });
 
       it("clicking the button removes the button and puts an input text box", function () {
@@ -68,13 +73,14 @@
       it("clicking the button adds a paragraph", function () {
         var paragraph = this.element.children[3];
 
-        assert.equal(paragraph.nodeName, "PARAGRAPH");
+        assert.equal(paragraph.nodeName, "P");
       });
 
-      it("the paragraph has a class of number-of-names", function () {
+      it("the paragraph has an id of number-of-names", function () {
         var paragraph = this.element.children[3];
+        var id = paragraph.getAttribute("id");
 
-        assert.isTrue(paragraph.classList.contains("number-of-names"));
+        assert.equal(id, "number-of-names");
       });
 
       it("the two other buttons have the write inner text", function () {
@@ -113,7 +119,29 @@
         assert.isFalse(finishButton.dispatchEvent(mouseClick));
       });
 
+      it("hitting enter on input does not add name if empty", function () {
+        var input = this.element.children[0];
+        var paragraph = document.getElementById("number-of-names");
+        var enter = setupKeyPress("Enter");
+
+        input.dispatchEvent(enter);
+
+        assert.equal(paragraph.innerHTML, "");
+      });
+
+      it("adds a name by pressing enter", function () {
+        var input = this.element.children[0];
+        var paragraph = document.getElementById("number-of-names");
+        var enter = setupKeyPress("Enter");
+
+        input.setAttribute("value", "New Name");
+        input.dispatchEvent(enter);
+
+        assert.equal(paragraph.innerHTML, "Number of names: 1");
+      });
     });
+
+
   });
 
   function setupMouseClick(){
