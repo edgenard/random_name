@@ -27,8 +27,10 @@
     moreButton.addEventListener("click", function (event) {
       event.preventDefault();
       var input = document.getElementById("name-input");
+      if(input.value.length === 0) return;
       addToNameList(input.value);
       updateNameCount();
+      input.setAttribute("value", "");
     });
 
     var closeButton = document.createElement("button");

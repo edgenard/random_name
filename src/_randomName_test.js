@@ -180,7 +180,7 @@
         assert.equal(numberOfNames.innerHTML, "Number of names: 1");
       });
 
-      it.skip("does not add a name with empty input with moreButton", function () {
+      it("does not add a name with empty input with moreButton", function () {
         var input = document.getElementById("name-input");
         var moreButton = document.getElementById("more-names");
         var numberOfNames = document.getElementById("number-of-names");
@@ -189,6 +189,17 @@
         moreButton.dispatchEvent(click);
 
         assert.equal(numberOfNames.innerHTML, "");
+      });
+
+      it("clears the input box after cliking more button", function () {
+        var input = document.getElementById("name-input");
+        var moreButton = document.getElementById("more-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "Name");
+        moreButton.dispatchEvent(click);
+
+        assert.equal(input.value, "");
       });
     });
 
