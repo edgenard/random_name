@@ -21,11 +21,13 @@
     parent.removeChild(parent.firstChild);
 
     var moreButton = document.createElement("button");
+    moreButton.setAttribute("id", "more-names");
     moreButton.addEventListener("click", function (event) {
       event.preventDefault();
     });
 
     var closeButton = document.createElement("button");
+    closeButton.setAttribute("id", "finished-with-names");
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
     });
@@ -46,6 +48,7 @@
       event.preventDefault();
       var value = event.currentTarget.value;
       if(value.length === 0) return;
+      event.currentTarget.setAttribute("value", "");
       addToNameList(value);
       updateNameCount();
     } else {

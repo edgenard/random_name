@@ -70,6 +70,18 @@
         assert.equal(thirdChild, "BUTTON");
       });
 
+      it("has a button with an id of more-names", function () {
+        var moreButton = document.getElementById("more-names");
+
+        assert.isNotNull(moreButton);
+      });
+
+      it("has button with an id of finished-with-names", function () {
+        var finishButton = document.getElementById("finished-with-names");
+
+        assert.isNotNull(finishButton);
+      });
+
       it("clicking the button adds a paragraph", function () {
         var paragraph = this.element.children[3];
 
@@ -138,6 +150,21 @@
         input.dispatchEvent(enter);
 
         assert.equal(paragraph.innerHTML, "Number of names: 1");
+      });
+
+      it("adding a name with enter clears the input box", function () {
+        var input = this.element.children[0];
+        var enter = setupKeyPress("Enter");
+
+        input.setAttribute("value", "Name");
+        input.dispatchEvent(enter);
+
+        assert.equal(input.value, "");
+      });
+
+      it.skip("does not add a name with empty input with moreButton", function () {
+        var input = this.element.children[0];
+        var moreButton;
       });
     });
 
