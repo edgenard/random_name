@@ -110,35 +110,35 @@
       });
 
       it("input box listens for return key", function () {
-        var input = this.element.firstChild;
+        var input = document.getElementById("name-input");
         var enter = setupKeyPress("Enter");
 
         assert.isFalse(input.dispatchEvent(enter));
       });
 
       it("input doesn't listen for other keys", function () {
-        var input = this.element.firstChild;
+        var input = document.getElementById("name-input");
         var dKey = setupKeyPress("d");
 
         assert.isTrue(input.dispatchEvent(dKey));
       });
 
       it("more button has event listener", function () {
-        var moreButton = this.element.children[1];
+        var moreButton = document.getElementById("more-names");
         var mouseClick = setupMouseClick();
 
         assert.isFalse(moreButton.dispatchEvent(mouseClick));
       });
 
       it("finish adding names button has event listner", function () {
-        var finishButton = this.element.children[2];
+        var finishButton = document.getElementById("finished-with-names");
         var mouseClick = setupMouseClick();
 
         assert.isFalse(finishButton.dispatchEvent(mouseClick));
       });
 
       it("hitting enter on input does not add name if empty", function () {
-        var input = this.element.children[0];
+        var input = document.getElementById("name-input");
         var paragraph = document.getElementById("number-of-names");
         var enter = setupKeyPress("Enter");
 
@@ -148,7 +148,7 @@
       });
 
       it("adds a name by pressing enter", function () {
-        var input = this.element.children[0];
+        var input = document.getElementById("name-input");
         var paragraph = document.getElementById("number-of-names");
         var enter = setupKeyPress("Enter");
 
@@ -159,7 +159,7 @@
       });
 
       it("adding a name with enter clears the input box", function () {
-        var input = this.element.children[0];
+        var input = document.getElementById("name-input");
         var enter = setupKeyPress("Enter");
 
         input.setAttribute("value", "Name");
@@ -169,7 +169,7 @@
       });
 
       it.skip("does not add a name with empty input with moreButton", function () {
-        var input = this.element.children[0];
+        var input = document.getElementById("name-input");
         var moreButton;
       });
     });
