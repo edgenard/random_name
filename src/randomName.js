@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var NAMES = [];
+  var NAMES;
 
   function initialize(element) {
     var button = document.createElement("button");
@@ -9,6 +9,7 @@
     button.innerHTML = "Click to add names";
     element.classList.add("random-name-picker");
     button.addEventListener("click", startAddingNames);
+    NAMES = [];
   }
 
   function startAddingNames(event) {
@@ -25,6 +26,9 @@
     moreButton.setAttribute("id", "more-names");
     moreButton.addEventListener("click", function (event) {
       event.preventDefault();
+      var input = document.getElementById("name-input");
+      addToNameList(input.value);
+      updateNameCount();
     });
 
     var closeButton = document.createElement("button");

@@ -168,9 +168,27 @@
         assert.equal(input.value, "");
       });
 
+      it("adds a name by clicking the more names button", function () {
+        var input = document.getElementById("name-input");
+        var moreButton = document.getElementById("more-names");
+        var numberOfNames = document.getElementById("number-of-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "name");
+        moreButton.dispatchEvent(click);
+
+        assert.equal(numberOfNames.innerHTML, "Number of names: 1");
+      });
+
       it.skip("does not add a name with empty input with moreButton", function () {
         var input = document.getElementById("name-input");
-        var moreButton;
+        var moreButton = document.getElementById("more-names");
+        var numberOfNames = document.getElementById("number-of-names");
+        var click = setupMouseClick();
+
+        moreButton.dispatchEvent(click);
+
+        assert.equal(numberOfNames.innerHTML, "");
       });
     });
 
