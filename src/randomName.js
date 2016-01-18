@@ -38,7 +38,10 @@
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
       var input = document.getElementById("name-input");
-      if(input.value.length === 0) return;
+      if(input.value.length === 0 && NAMES.length === 0) {
+        nameCountParagraph.innerHTML = 'PLEASE ADD NAMES TO LIST';
+        return;
+      }
       addToNameList(input.value);
       updateNameCount();
     });

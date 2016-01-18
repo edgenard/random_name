@@ -214,7 +214,8 @@
         assert.equal(numberOfNames.innerHTML, "Number of names: 1");
       });
 
-      it("does not add a name if input is empty", function () {
+
+      it("sends message if finished button clicked with no names", function () {
         var input = document.getElementById("name-input");
         var finishedButton = document.getElementById("finished-with-names");
         var numberOfNames = document.getElementById("number-of-names");
@@ -222,7 +223,7 @@
 
         finishedButton.dispatchEvent(click);
 
-        assert.equal(numberOfNames.innerHTML, "");
+        assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
       });
     });
 
