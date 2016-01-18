@@ -225,6 +225,14 @@
 
         assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
       });
+
+      it("removes the input, buttons and paragraph count when finished");
+
+      it("adds a button to pick names");
+
+      it("adds a button to edit list");
+
+      it("adds a button to reset list");
     });
 
 
