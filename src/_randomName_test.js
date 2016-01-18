@@ -225,7 +225,8 @@
 
         assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
       });
-
+      // TODO: Remove check for listeners on buttons, just test that they do what
+      // they are supposed to when clicked.  
       it("removes the input, buttons and paragraph count when finished");
 
       it("adds a button to pick names");
