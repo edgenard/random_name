@@ -23,7 +23,7 @@
       assert.equal(button, "BUTTON");
     });
 
-    it("the button inside says Click to add names", function () {
+    it("the button inside says 'Click to add names'", function () {
       var element = document.createElement("div");
 
       randomName.initialize(element);
@@ -109,7 +109,7 @@
         assert.equal(finishButton.innerHTML, "Finished adding names");
       });
 
-      it("input box listens for return key", function () {
+      it("input box listens for Enter key", function () {
         var input = document.getElementById("name-input");
         var enter = setupKeyPress("Enter");
 
@@ -200,6 +200,18 @@
         moreButton.dispatchEvent(click);
 
         assert.equal(input.value, "");
+      });
+
+      it("adds a name if finished button is clicked", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var numberOfNames = document.getElementById("number-of-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+
+        assert.equal(numberOfNames.innerHTML, "Number of names: 1");
       });
     });
 

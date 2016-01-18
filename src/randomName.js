@@ -37,6 +37,9 @@
     closeButton.setAttribute("id", "finished-with-names");
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
+      var input = document.getElementById("name-input");
+      addToNameList(input.value);
+      updateNameCount();
     });
 
     var nameCountParagraph = document.createElement("p");
