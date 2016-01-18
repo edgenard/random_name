@@ -23,7 +23,7 @@ gulp.task('server', function () {
   });
 });
 
-gulp.task('start', function(done) {
+gulp.task('karma', function(done) {
   new Server({
     configFile: __dirname + '/karma.conf.js'
   }, done).start();
