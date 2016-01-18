@@ -38,6 +38,7 @@
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
       var input = document.getElementById("name-input");
+      if(input.value.length === 0) return;
       addToNameList(input.value);
       updateNameCount();
     });

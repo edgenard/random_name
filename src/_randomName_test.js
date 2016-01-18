@@ -213,6 +213,17 @@
 
         assert.equal(numberOfNames.innerHTML, "Number of names: 1");
       });
+
+      it("does not add a name if input is empty", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var numberOfNames = document.getElementById("number-of-names");
+        var click = setupMouseClick();
+
+        finishedButton.dispatchEvent(click);
+
+        assert.equal(numberOfNames.innerHTML, "");
+      });
     });
 
 
