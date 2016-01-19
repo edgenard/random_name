@@ -26,7 +26,7 @@
     moreButton.setAttribute("id", "more-names");
     moreButton.addEventListener("click", function (event) {
       event.preventDefault();
-      var input = document.getElementById("name-input");
+
       if(input.value.length === 0) return;
       addToNameList(input.value);
       updateNameCount();
@@ -37,7 +37,6 @@
     closeButton.setAttribute("id", "finished-with-names");
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
-      var input = document.getElementById("name-input");
       if(input.value.length === 0 && NAMES.length === 0) {
         nameCountParagraph.innerHTML = 'PLEASE ADD NAMES TO LIST';
         return;
@@ -45,6 +44,7 @@
       addToNameList(input.value);
       updateNameCount();
       input.parentNode.removeChild(input);
+      moreButton.parentNode.removeChild(moreButton);
     });
 
     var nameCountParagraph = document.createElement("p");

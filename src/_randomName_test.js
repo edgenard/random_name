@@ -238,7 +238,7 @@
         assert.isNull(input);
       });
 
-      it.skip("removes the more button when finished", function () {
+      it("removes the more button when finished", function () {
         var input = document.getElementById("name-input");
         var finishedButton = document.getElementById("finished-with-names");
         var click = setupMouseClick();
