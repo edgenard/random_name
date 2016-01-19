@@ -46,6 +46,9 @@
       input.parentNode.removeChild(input);
       moreButton.parentNode.removeChild(moreButton);
       closeButton.parentNode.removeChild(closeButton);
+      var pickNames = document.createElement("button");
+      pickNames.setAttribute("id", "pick-names");
+      parent.appendChild(pickNames);
     });
 
     var nameCountParagraph = document.createElement("p");

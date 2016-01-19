@@ -262,7 +262,18 @@
         assert.isNull(finishedButton);
       });
 
-      it("adds a button to pick names");
+      it("adds a button to pick names when finished", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        var pickNames = document.getElementById("pick-names");
+
+        assert.isNotNull(pickNames);
+        assert.equal(pickNames.nodeName, "BUTTON");
+      });
 
       it("adds a button to edit list");
 
