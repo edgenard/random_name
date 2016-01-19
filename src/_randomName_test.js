@@ -271,11 +271,20 @@
         finishedButton.dispatchEvent(click);
         var pickNames = document.getElementById("pick-names");
 
-        assert.isNotNull(pickNames);
         assert.equal(pickNames.nodeName, "BUTTON");
       });
 
-      it("adds a button to edit list");
+      it("adds a button to edit list when finished", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        var editNames = document.getElementById("edit-names");
+
+        assert.equal(editNames.nodeName, "BUTTON");
+      });
 
       it("adds a button to reset list");
     });

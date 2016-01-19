@@ -43,12 +43,18 @@
       }
       addToNameList(input.value);
       updateNameCount();
+
       input.parentNode.removeChild(input);
       moreButton.parentNode.removeChild(moreButton);
       closeButton.parentNode.removeChild(closeButton);
+
       var pickNames = document.createElement("button");
       pickNames.setAttribute("id", "pick-names");
       parent.appendChild(pickNames);
+
+      var editNames = document.createElement("button");
+      editNames.setAttribute("id", "edit-names");
+      parent.appendChild(editNames);
     });
 
     var nameCountParagraph = document.createElement("p");
