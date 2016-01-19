@@ -250,6 +250,18 @@
         assert.isNull(moreButton);
       });
 
+      it("removes the finished button when finished", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        finishedButton = document.getElementById("finished-with-names");
+
+        assert.isNull(finishedButton);
+      });
+
       it("adds a button to pick names");
 
       it("adds a button to edit list");

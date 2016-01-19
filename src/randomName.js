@@ -45,6 +45,7 @@
       updateNameCount();
       input.parentNode.removeChild(input);
       moreButton.parentNode.removeChild(moreButton);
+      closeButton.parentNode.removeChild(closeButton);
     });
 
     var nameCountParagraph = document.createElement("p");
