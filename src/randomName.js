@@ -44,6 +44,7 @@
       }
       addToNameList(input.value);
       updateNameCount();
+      input.parentNode.removeChild(input);
     });
 
     var nameCountParagraph = document.createElement("p");

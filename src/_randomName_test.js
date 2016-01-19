@@ -226,8 +226,29 @@
         assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
       });
       // TODO: Remove check for listeners on buttons, just test that they do what
-      // they are supposed to when clicked.  
-      it("removes the input, buttons and paragraph count when finished");
+      // they are supposed to when clicked.
+      it("removes the input count when finished", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        input = document.getElementById("name-input");
+        assert.isNull(input);
+      });
+
+      it.skip("removes the more button when finished", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        var moreButton = document.getElementById("more-names");
+
+        assert.isNull(moreButton);
+      });
 
       it("adds a button to pick names");
 
