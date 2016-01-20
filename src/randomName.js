@@ -55,6 +55,10 @@
       var editNames = document.createElement("button");
       editNames.setAttribute("id", "edit-names");
       parent.appendChild(editNames);
+
+      var resetList = document.createElement("button");
+      resetList.setAttribute("id", "reset-list");
+      parent.appendChild(resetList);
     });
 
     var nameCountParagraph = document.createElement("p");

@@ -47,11 +47,7 @@
     describe("Adding Names", function () {
       beforeEach("Setup for adding names", function () {
         this.element = document.createElement("div");
-        document.body.appendChild(this.element);
-        var mouseClick = setupMouseClick();
-        randomName.initialize(this.element);
-        var button = this.element.firstChild;
-        button.dispatchEvent(mouseClick);
+        setupApp(this.element);
       });
 
       afterEach("clear body", function () {
@@ -225,8 +221,7 @@
 
         assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
       });
-      // TODO: Remove check for listeners on buttons, just test that they do what
-      // they are supposed to when clicked.
+
       it("removes the input count when finished", function () {
         var input = document.getElementById("name-input");
         var finishedButton = document.getElementById("finished-with-names");
@@ -286,8 +281,37 @@
         assert.equal(editNames.nodeName, "BUTTON");
       });
 
-      it("adds a button to reset list");
+      it("adds a button to reset list", function () {
+        var input = document.getElementById("name-input");
+        var finishedButton = document.getElementById("finished-with-names");
+        var click = setupMouseClick();
+
+        input.setAttribute("value", "New Name");
+        finishedButton.dispatchEvent(click);
+        var resetList = document.getElementById("reset-list");
+
+        assert.equal(resetList.nodeName, "BUTTON");
+      });
     });
+
+    // `TODO`: Remove check for listeners on buttons, just test that they do what
+    // they are supposed to when clicked.
+    // TODO: Clean up duplication in tests. 
+
+    describe("Picking Names", function () {
+      beforeEach("Setup for picking names", function () {
+        this.element = document.createElement("div");
+        setupApp(this.element);
+        addNamesToList();
+        var finishedButton = document.getElementById("finished-with-names");
+        finishedButton.dispatchEvent(setupMouseClick());
+      });
+
+      afterEach("Clean up Names", function () {
+        this.element.parentNode.removeChild(this.element);
+      });
+    });
+
 
 
   });
@@ -311,6 +335,25 @@
       });
     }
     return keyboardEvent;
+  }
+
+  function setupApp(element) {
+    document.body.appendChild(element);
+    randomName.initialize(element);
+    var button = element.firstChild;
+    button.dispatchEvent(setupMouseClick());
+  }
+
+  function addNamesToList() {
+    var names = ["Joey", "Zoe", "Chloe", "Tony", "Bill"];
+    var input = document.getElementById("name-input");
+    var moreButton = document.getElementById("more-names");
+    var click = setupMouseClick();
+
+    names.forEach(function (name) {
+      input.setAttribute("value", name);
+      moreButton.dispatchEvent(click);
+    });
   }
 
 }());
