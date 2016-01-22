@@ -84,54 +84,57 @@
         var moreButton = document.getElementById("more-names");
         var finishButton = document.getElementById("finished-with-names");
 
-        assert.equal(moreButton.innerHTML, "Add more names");
+        assert.equal(moreButton.innerHTML, "Add name to list");
         assert.equal(finishButton.innerHTML, "Finished adding names");
       });
 
-      it("input box listens for Enter key", function () {
-        var input = document.getElementById("name-input");
-        var enter = setupKeyPress("Enter");
+      describe("Adding names with input", function () {
+        beforeEach("setup input field", function () {
+          this.input = document.getElementById("name-input");
+          this.enter = setupKeyPress("Enter");
+          this.paragraph = document.getElementById("number-of-names");
+        });
 
-        assert.isFalse(input.dispatchEvent(enter));
+        afterEach("clear input field", function () {
+          this.input.setAttribute("value", "");
+        });
+
+        it("input box listens for Enter key", function () {
+          assert.isFalse(this.input.dispatchEvent(this.enter));
+        });
+
+        it("input doesn't listen for other keys", function () {
+          var dKey = setupKeyPress("d");
+
+          assert.isTrue(this.input.dispatchEvent(dKey));
+        });
+
+        it("hitting enter on input does not add name if empty", function () {
+          this.input.dispatchEvent(this.enter);
+
+          assert.equal(this.paragraph.innerHTML, "");
+        });
+
+
+        it("adds a name by pressing enter", function () {
+          this.input.setAttribute("value", "New Name");
+          this.input.dispatchEvent(this.enter);
+
+          assert.equal(this.paragraph.innerHTML, "Number of names: 1");
+        });
+
+        it("adding a name with enter clears the input box", function () {
+          this.input.setAttribute("value", "Name");
+          this.input.dispatchEvent(this.enter);
+
+          assert.equal(this.input.value, "");
+        });
       });
 
-      it("input doesn't listen for other keys", function () {
-        var input = document.getElementById("name-input");
-        var dKey = setupKeyPress("d");
+      describe("Adding names by using more button", function () {
+        beforeEach("setup for using more button", function () {
 
-        assert.isTrue(input.dispatchEvent(dKey));
-      });
-
-
-      it("hitting enter on input does not add name if empty", function () {
-        var input = document.getElementById("name-input");
-        var paragraph = document.getElementById("number-of-names");
-        var enter = setupKeyPress("Enter");
-
-        input.dispatchEvent(enter);
-
-        assert.equal(paragraph.innerHTML, "");
-      });
-
-      it("adds a name by pressing enter", function () {
-        var input = document.getElementById("name-input");
-        var paragraph = document.getElementById("number-of-names");
-        var enter = setupKeyPress("Enter");
-
-        input.setAttribute("value", "New Name");
-        input.dispatchEvent(enter);
-
-        assert.equal(paragraph.innerHTML, "Number of names: 1");
-      });
-
-      it("adding a name with enter clears the input box", function () {
-        var input = document.getElementById("name-input");
-        var enter = setupKeyPress("Enter");
-
-        input.setAttribute("value", "Name");
-        input.dispatchEvent(enter);
-
-        assert.equal(input.value, "");
+        });
       });
 
       it("adds a name by clicking the more names button", function () {

@@ -64,7 +64,7 @@
     var nameCountParagraph = document.createElement("p");
     nameCountParagraph.setAttribute("id", "number-of-names");
 
-    moreButton.innerHTML = "Add more names";
+    moreButton.innerHTML = "Add name to list";
     closeButton.innerHTML = "Finished adding names";
     parent.appendChild(input);
     parent.appendChild(moreButton);
