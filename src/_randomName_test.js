@@ -133,44 +133,37 @@
 
       describe("Adding names by using more button", function () {
         beforeEach("setup for using more button", function () {
+          this.input = document.getElementById("name-input");
+          this.moreButton = document.getElementById("more-names");
+          this.numberOfNames = document.getElementById("number-of-names");
+          this.click = setupMouseClick();
+        });
 
+        afterEach("clear input field", function () {
+          this.input.value = "";
+        });
+
+        it("adds a name by clicking the more names button", function () {
+          this.input.setAttribute("value", "name");
+          this.moreButton.dispatchEvent(this.click);
+
+          assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
+        });
+
+        it("does not add a name with empty input with moreButton", function () {
+          this.moreButton.dispatchEvent(this.click);
+
+          assert.equal(this.numberOfNames.innerHTML, "");
+        });
+
+        it("clears the input box after clicking more button", function () {
+          this.input.setAttribute("value", "Name");
+          this.moreButton.dispatchEvent(this.click);
+
+          assert.equal(this.input.value, "");
         });
       });
-
-      it("adds a name by clicking the more names button", function () {
-        var input = document.getElementById("name-input");
-        var moreButton = document.getElementById("more-names");
-        var numberOfNames = document.getElementById("number-of-names");
-        var click = setupMouseClick();
-
-        input.setAttribute("value", "name");
-        moreButton.dispatchEvent(click);
-
-        assert.equal(numberOfNames.innerHTML, "Number of names: 1");
-      });
-
-      it("does not add a name with empty input with moreButton", function () {
-        var input = document.getElementById("name-input");
-        var moreButton = document.getElementById("more-names");
-        var numberOfNames = document.getElementById("number-of-names");
-        var click = setupMouseClick();
-
-        moreButton.dispatchEvent(click);
-
-        assert.equal(numberOfNames.innerHTML, "");
-      });
-
-      it("clears the input box after clicking more button", function () {
-        var input = document.getElementById("name-input");
-        var moreButton = document.getElementById("more-names");
-        var click = setupMouseClick();
-
-        input.setAttribute("value", "Name");
-        moreButton.dispatchEvent(click);
-
-        assert.equal(input.value, "");
-      });
-
+      
       it("adds a name if finished button is clicked", function () {
         var input = document.getElementById("name-input");
         var finishedButton = document.getElementById("finished-with-names");
@@ -182,6 +175,10 @@
 
         assert.equal(numberOfNames.innerHTML, "Number of names: 1");
       });
+
+
+
+
 
 
       it("sends message if finished button clicked with no names", function () {
