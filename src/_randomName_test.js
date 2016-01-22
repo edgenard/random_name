@@ -73,7 +73,7 @@
         assert.isNotNull(finishButton);
       });
 
-      it("clicking the button adds a paragraph with the id number of names", function () {
+      it("clicking the button adds a paragraph with the id number-of-names", function () {
         var paragraph = document.getElementById("number-of-names");
 
         assert.equal(paragraph.nodeName, "P");
@@ -102,19 +102,6 @@
         assert.isTrue(input.dispatchEvent(dKey));
       });
 
-      it("more button has event listener", function () {
-        var moreButton = document.getElementById("more-names");
-        var mouseClick = setupMouseClick();
-
-        assert.isFalse(moreButton.dispatchEvent(mouseClick));
-      });
-
-      it("finish adding names button has event listner", function () {
-        var finishButton = document.getElementById("finished-with-names");
-        var mouseClick = setupMouseClick();
-
-        assert.isFalse(finishButton.dispatchEvent(mouseClick));
-      });
 
       it("hitting enter on input does not add name if empty", function () {
         var input = document.getElementById("name-input");
