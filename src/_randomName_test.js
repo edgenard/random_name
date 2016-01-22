@@ -264,8 +264,6 @@
       });
     });
 
-    // `TODO`: Remove check for listeners on buttons, just test that they do what
-    // they are supposed to when clicked.
     // TODO: Clean up duplication in tests.
 
     describe("Picking Names", function () {
