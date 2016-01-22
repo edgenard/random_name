@@ -73,18 +73,12 @@
         assert.isNotNull(finishButton);
       });
 
-      it("clicking the button adds a paragraph", function () {
+      it("clicking the button adds a paragraph with the id number of names", function () {
         var paragraph = document.getElementById("number-of-names");
 
         assert.equal(paragraph.nodeName, "P");
       });
 
-      it("the paragraph has an id of number-of-names", function () {
-        var paragraph = document.getElementById("number-of-names");
-
-
-        assert.isNotNull(paragraph);
-      });
 
       it("the two other buttons have the write inner text", function () {
         var moreButton = document.getElementById("more-names");
