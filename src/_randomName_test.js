@@ -163,7 +163,7 @@
           assert.equal(this.input.value, "");
         });
       });
-      
+
       it("adds a name if finished button is clicked", function () {
         var input = document.getElementById("name-input");
         var finishedButton = document.getElementById("finished-with-names");
@@ -177,9 +177,9 @@
       });
 
 
+      describe("Finished adding names", function () {
 
-
-
+      });
 
       it("sends message if finished button clicked with no names", function () {
         var input = document.getElementById("name-input");
