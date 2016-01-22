@@ -32,17 +32,6 @@
       assert.equal(button.innerHTML, "Click to add names");
     });
 
-    it("adds a click listener to the button", function () {
-      var element = document.createElement("div");
-      var mouseClick = setupMouseClick();
-
-      randomName.initialize(element);
-      var button = element.firstChild;
-
-      //When an event is triggered, if the element has an event listener and that
-      //event listener has event.preventDefault() called, it will return false
-      assert.isFalse(button.dispatchEvent(mouseClick));
-    });
 
     describe("Adding Names", function () {
       beforeEach("Setup for adding names", function () {
@@ -296,7 +285,7 @@
 
     // `TODO`: Remove check for listeners on buttons, just test that they do what
     // they are supposed to when clicked.
-    // TODO: Clean up duplication in tests. 
+    // TODO: Clean up duplication in tests.
 
     describe("Picking Names", function () {
       beforeEach("Setup for picking names", function () {
