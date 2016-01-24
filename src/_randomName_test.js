@@ -213,6 +213,14 @@
           assert.isNull(finishedButton);
         });
 
+        it("removes the numberOfNames paragraph", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var numberOfNames = document.getElementById("number-of-names");
+
+          assert.isNull(numberOfNames);
+        });
+
         it("adds a button to pick names when finished", function () {
           this.input.setAttribute("value", "New Name");
           this.finishedButton.dispatchEvent(this.click);
