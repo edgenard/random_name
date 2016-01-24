@@ -164,107 +164,81 @@
         });
       });
 
-      it("adds a name if finished button is clicked", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var numberOfNames = document.getElementById("number-of-names");
-        var click = setupMouseClick();
-
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-
-        assert.equal(numberOfNames.innerHTML, "Number of names: 1");
-      });
-
-
       describe("Finished adding names", function () {
+        beforeEach("setup to test finish button", function () {
+          this.input = document.getElementById("name-input");
+          this.finishedButton = document.getElementById("finished-with-names");
+          this.numberOfNames = document.getElementById("number-of-names");
+          this.click = setupMouseClick();
+        });
 
-      });
+        afterEach("clear input field", function () {
+          this.input.value = "";
+        });
 
-      it("sends message if finished button clicked with no names", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var numberOfNames = document.getElementById("number-of-names");
-        var click = setupMouseClick();
+        it("adds a name if finished button is clicked", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
 
-        finishedButton.dispatchEvent(click);
+          assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
+        });
 
-        assert.equal(numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
-      });
+        it("sends message if finished button clicked with no names", function () {
+          this.finishedButton.dispatchEvent(this.click);
 
-      it("removes the input count when finished", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
+          assert.equal(this.numberOfNames.innerHTML, "PLEASE ADD NAMES TO LIST");
+        });
 
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        input = document.getElementById("name-input");
-        assert.isNull(input);
-      });
+        it("removes the input field when finished", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var input = document.getElementById("name-input");
 
-      it("removes the more button when finished", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
+          assert.isNull(input);
+        });
 
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        var moreButton = document.getElementById("more-names");
+        it("removes the more button when finished", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var moreButton = document.getElementById("more-names");
 
-        assert.isNull(moreButton);
-      });
+          assert.isNull(moreButton);
+        });
 
-      it("removes the finished button when finished", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
+        it("removes the finished button when finished", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var finishedButton = document.getElementById("finished-with-names");
 
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        finishedButton = document.getElementById("finished-with-names");
+          assert.isNull(finishedButton);
+        });
 
-        assert.isNull(finishedButton);
-      });
+        it("adds a button to pick names when finished", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var pickNames = document.getElementById("pick-names");
 
-      it("adds a button to pick names when finished", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
+          assert.equal(pickNames.nodeName, "BUTTON");
+        });
 
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        var pickNames = document.getElementById("pick-names");
+        it("adds a button to edit list when finished", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var editNames = document.getElementById("edit-names");
 
-        assert.equal(pickNames.nodeName, "BUTTON");
-      });
+          assert.equal(editNames.nodeName, "BUTTON");
+        });
 
-      it("adds a button to edit list when finished", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
+        it("adds a button to reset list", function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var resetList = document.getElementById("reset-list");
 
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        var editNames = document.getElementById("edit-names");
-
-        assert.equal(editNames.nodeName, "BUTTON");
-      });
-
-      it("adds a button to reset list", function () {
-        var input = document.getElementById("name-input");
-        var finishedButton = document.getElementById("finished-with-names");
-        var click = setupMouseClick();
-
-        input.setAttribute("value", "New Name");
-        finishedButton.dispatchEvent(click);
-        var resetList = document.getElementById("reset-list");
-
-        assert.equal(resetList.nodeName, "BUTTON");
+          assert.equal(resetList.nodeName, "BUTTON");
+        });
       });
     });
 
-    // TODO: Clean up duplication in tests.
 
     describe("Picking Names", function () {
       beforeEach("Setup for picking names", function () {
