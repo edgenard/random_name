@@ -267,6 +267,10 @@
         this.pickNames = document.getElementById("pick-names");
         this.chosenName = document.getElementById("chosen-name");
       });
+      // NOTE: How to check for weightedness.
+      // NOTE: How to check that a name eventually gets off the list.
+      // NOTE: Should I check that weighted list is made? If yes, how?
+      // NOTE: Would  reflection in the UI help?
 
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
