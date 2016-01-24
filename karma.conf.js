@@ -38,12 +38,6 @@ module.exports = function(config) {
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['mocha'],
 
-    plugins: [
-      "karma-mocha",
-      "karma-mocha-reporter",
-      "karma-commonjs"
-    ],
-
     // web server port
     port: 9876,
 
