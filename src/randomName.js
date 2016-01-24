@@ -59,6 +59,10 @@
       var resetList = document.createElement("button");
       resetList.setAttribute("id", "reset-list");
       parent.appendChild(resetList);
+
+      var chosenName = document.createElement("p");
+      chosenName.setAttribute("id", "chosen-name");
+      parent.appendChild(chosenName);
     });
 
     var nameCountParagraph = document.createElement("p");

@@ -221,7 +221,7 @@
           assert.equal(pickNames.nodeName, "BUTTON");
         });
 
-        it("adds a button to edit list when finished", function () {
+        it("adds a button to edit list", function () {
           this.input.setAttribute("value", "New Name");
           this.finishedButton.dispatchEvent(this.click);
           var editNames = document.getElementById("edit-names");
@@ -236,7 +236,16 @@
 
           assert.equal(resetList.nodeName, "BUTTON");
         });
+
+        it('adds a paragraph to show chosen name', function () {
+          this.input.setAttribute("value", "New Name");
+          this.finishedButton.dispatchEvent(this.click);
+          var chosenName = document.getElementById("chosen-name");
+
+          assert.equal(chosenName.nodeName, "P");
+        });
       });
+
     });
 
 
@@ -247,6 +256,8 @@
         addNamesToList();
         var finishedButton = document.getElementById("finished-with-names");
         finishedButton.dispatchEvent(setupMouseClick());
+        this.pickNames = document.getElementById("pick-names");
+        this.chosenName = document.getElementById("chosen-name");
       });
 
       afterEach("Clean up Names", function () {
