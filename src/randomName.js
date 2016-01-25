@@ -1,18 +1,23 @@
 (function() {
   'use strict';
 
-  var NAMES;
-  var weightedNames;
+  if(typeof RandomPicker === "undefined"){
+    window.RandomPicker = {};
+  }
 
-  function initialize(element) {
+  var picker = window.RandomPicker;
+
+  var NAMES;
+
+  picker.initialize = function (element) {
     var button = document.createElement("button");
     element.appendChild(button);
     button.innerHTML = "Click to add names";
     element.classList.add("random-name-picker");
     button.addEventListener("click", startAddingNames);
     NAMES = [];
-    weightedNames = [];
-  }
+    this.weightedNames = [];
+  };
 
   function startAddingNames(event) {
     event.preventDefault();
@@ -102,8 +107,8 @@
   }
 
 
-  module.exports = {
-    initialize: initialize,
-    weightedNames: weightedNames
-  };
+  // module.exports = {
+  //   initialize: initialize,
+  //   weightedNames: weightedNames
+  // };
 }());

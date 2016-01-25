@@ -2,14 +2,15 @@
 (function() {
   'use strict';
   var assert = require("./assert");
-  var randomName = require("./randomName");
+  // var randomName = require("./randomName");
+  var picker = window.RandomPicker;
 
   describe("random name picker", function () {
 
     it("sets a default class on the given element", function () {
       var element = document.createElement("div");
 
-      randomName.initialize(element);
+      picker.initialize(element);
 
       assert.isTrue(element.classList.contains("random-name-picker"));
     });
@@ -17,7 +18,7 @@
     it("adds a button inside the given element", function () {
       var element = document.createElement("div");
 
-      randomName.initialize(element);
+      picker.initialize(element);
       var button = element.firstChild.nodeName;
 
       assert.equal(button, "BUTTON");
@@ -26,7 +27,7 @@
     it("the button inside says 'Click to add names'", function () {
       var element = document.createElement("div");
 
-      randomName.initialize(element);
+      picker.initialize(element);
       var button = element.firstChild;
 
       assert.equal(button.innerHTML, "Click to add names");
@@ -306,7 +307,7 @@
 
   function setupApp(element) {
     document.body.appendChild(element);
-    randomName.initialize(element);
+    picker.initialize(element);
     var button = element.firstChild;
     button.dispatchEvent(setupMouseClick());
   }

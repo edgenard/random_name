@@ -10,3 +10,6 @@ node_modules/utf-8-validate/build/
 
 ##tern ignore
 .tern-project
+
+#Notes
+notes.txt

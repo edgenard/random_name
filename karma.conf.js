@@ -15,8 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      "src/vendor/chai-2.1.0.js",
-      "src/*.js"
+      "src/randomName.js",
+      "src/_randomName_test.js",
+      "src/assert.js",
+      "src/vendor/chai-2.1.0.js"
     ],
 
 
