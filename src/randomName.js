@@ -37,7 +37,7 @@
       if(input.value.length === 0) return;
       addToNameList(input.value);
       updateNameCount();
-      input.setAttribute("value", "");
+      input.value = '';
     });
 
     var closeButton = document.createElement("button");
@@ -89,7 +89,7 @@
       event.preventDefault();
       var value = event.currentTarget.value;
       if(value.length === 0) return;
-      event.currentTarget.setAttribute("value", "");
+      event.currentTarget.value = "";
       addToNameList(value);
       updateNameCount();
     } else {

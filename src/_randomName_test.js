@@ -97,7 +97,7 @@
         });
 
         afterEach("clear input field", function () {
-          this.input.setAttribute("value", "");
+          this.input.value = "";
         });
 
         it("input box listens for Enter key", function () {
@@ -118,14 +118,14 @@
 
 
         it("adds a name by pressing enter", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.input.dispatchEvent(this.enter);
 
           assert.equal(this.paragraph.innerHTML, "Number of names: 1");
         });
 
         it("adding a name with enter clears the input box", function () {
-          this.input.setAttribute("value", "Name");
+          this.input.value = "New Name";
           this.input.dispatchEvent(this.enter);
 
           assert.equal(this.input.value, "");
@@ -145,7 +145,7 @@
         });
 
         it("adds a name by clicking the more names button", function () {
-          this.input.setAttribute("value", "name");
+          this.input.value = "New Name";
           this.moreButton.dispatchEvent(this.click);
 
           assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
@@ -158,7 +158,7 @@
         });
 
         it("clears the input box after clicking more button", function () {
-          this.input.setAttribute("value", "Name");
+          this.input.value = "Name";
           this.moreButton.dispatchEvent(this.click);
 
           assert.equal(this.input.value, "");
@@ -178,7 +178,7 @@
         });
 
         it("adds a name if finished button is clicked", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "new name";
           this.finishedButton.dispatchEvent(this.click);
 
           assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
@@ -191,7 +191,7 @@
         });
 
         it("removes the input field when finished", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var input = document.getElementById("name-input");
 
@@ -199,7 +199,7 @@
         });
 
         it("removes the more button when finished", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var moreButton = document.getElementById("more-names");
 
@@ -207,7 +207,7 @@
         });
 
         it("removes the finished button when finished", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var finishedButton = document.getElementById("finished-with-names");
 
@@ -215,7 +215,7 @@
         });
 
         it("removes the numberOfNames paragraph", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var numberOfNames = document.getElementById("number-of-names");
 
@@ -223,7 +223,7 @@
         });
 
         it("adds a button to pick names when finished", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var pickNames = document.getElementById("pick-names");
 
@@ -231,7 +231,7 @@
         });
 
         it("adds a button to edit list", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var editNames = document.getElementById("edit-names");
 
@@ -239,7 +239,7 @@
         });
 
         it("adds a button to reset list", function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var resetList = document.getElementById("reset-list");
 
@@ -247,7 +247,7 @@
         });
 
         it('adds a paragraph to show chosen name', function () {
-          this.input.setAttribute("value", "New Name");
+          this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var chosenName = document.getElementById("chosen-name");
 
@@ -319,7 +319,7 @@
     var click = setupMouseClick();
 
     names.forEach(function (name) {
-      input.setAttribute("value", name);
+      input.value = "New Name";
       moreButton.dispatchEvent(click);
     });
   }
