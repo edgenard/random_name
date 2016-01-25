@@ -2,6 +2,7 @@
   'use strict';
 
   var NAMES;
+  var weightedNames;
 
   function initialize(element) {
     var button = document.createElement("button");
@@ -10,6 +11,7 @@
     element.classList.add("random-name-picker");
     button.addEventListener("click", startAddingNames);
     NAMES = [];
+    weightedNames = [];
   }
 
   function startAddingNames(event) {
@@ -95,12 +97,13 @@
   }
 
   function updateNameCount() {
-    var nameCountParagraph;
-    nameCountParagraph = document.getElementById("number-of-names");
+    var nameCountParagraph = document.getElementById("number-of-names");
     nameCountParagraph.innerHTML = "Number of names: " + NAMES.length;
-
   }
 
 
-  exports.initialize = initialize;
+  module.exports = {
+    initialize: initialize,
+    weightedNames: weightedNames
+  };
 }());
