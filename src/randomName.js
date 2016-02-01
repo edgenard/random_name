@@ -61,8 +61,6 @@
   function finishedWithNames(event){
     event.preventDefault();
     var parent = event.currentTarget.parentElement;
-    var finishedButton = event.currentTarget;
-    var moreButton = document.getElementById("more-names");
     var numberOfNames = document.getElementById("number-of-names");
     var input = document.getElementById("name-input");
 
@@ -74,9 +72,20 @@
       addToNameList(input.value);
       updateNameCount();
     }
-
     clearOut(parent);
+    addElementsToPickNames(parent);
+    makeWeightedList();
+  }
 
+  function clearOut(element){
+    var firstChild = element.firstChild;
+    while (firstChild){
+      element.removeChild(firstChild);
+      firstChild = element.firstChild;
+    }
+  }
+
+  function addElementsToPickNames(parent){
     var pickNames = document.createElement("button");
     pickNames.setAttribute("id", "pick-names");
     pickNames.innerHTML = "Pick a random name";
@@ -95,20 +104,7 @@
     var chosenName = document.createElement("p");
     chosenName.setAttribute("id", "chosen-name");
     parent.appendChild(chosenName);
-
-    makeWeightedList();
-
   }
-
-  function clearOut(element){
-    var firstChild = element.firstChild;
-    while (firstChild){
-      element.removeChild(firstChild);
-      firstChild = element.firstChild;
-    }
-  }
-
-
 
   function inputListener (event) {
     if(event.key === "Enter" || event.keyIdentifier === "Enter"){
