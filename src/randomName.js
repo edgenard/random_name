@@ -35,44 +35,7 @@
 
     var finishedButton = document.createElement("button");
     finishedButton.setAttribute("id", "finished-with-names");
-    finishedButton.addEventListener("click", function (event) {
-      event.preventDefault();
-      if(input.value.length === 0 && picker.names.length === 0) {
-        numberOfNames.innerHTML = 'PLEASE ADD NAMES TO LIST';
-        return;
-      }
-      if(input.value.length !== 0) {
-        addToNameList(input.value);
-        updateNameCount();
-      }
-
-
-      input.parentNode.removeChild(input);
-      moreButton.parentNode.removeChild(moreButton);
-      finishedButton.parentNode.removeChild(finishedButton);
-      numberOfNames.parentNode.removeChild(numberOfNames);
-
-      var pickNames = document.createElement("button");
-      pickNames.setAttribute("id", "pick-names");
-      pickNames.innerHTML = "Pick a random name";
-      parent.appendChild(pickNames);
-
-      var editNames = document.createElement("button");
-      editNames.setAttribute("id", "edit-names");
-      parent.appendChild(editNames);
-      editNames.innerHTML = "Edit names on list";
-
-      var resetList = document.createElement("button");
-      resetList.setAttribute("id", "reset-list");
-      parent.appendChild(resetList);
-      resetList.innerHTML = "Reset the list";
-
-      var chosenName = document.createElement("p");
-      chosenName.setAttribute("id", "chosen-name");
-      parent.appendChild(chosenName);
-
-      makeWeightedList();
-    });
+    finishedButton.addEventListener("click", finishedWithNames);
 
     var numberOfNames = document.createElement("p");
     numberOfNames.setAttribute("id", "number-of-names");
@@ -93,6 +56,51 @@
     addToNameList(input.value);
     updateNameCount();
     input.value = '';
+  }
+
+  function finishedWithNames(event){
+    event.preventDefault();
+    var parent = event.currentTarget.parentElement;
+    var finishedButton = event.currentTarget;
+    var moreButton = document.getElementById("more-names");
+    var numberOfNames = document.getElementById("number-of-names");
+    var input = document.getElementById("name-input");
+
+    if(input.value.length === 0 && picker.names.length === 0) {
+      numberOfNames.innerHTML = 'PLEASE ADD NAMES TO LIST';
+      return;
+    }
+    if(input.value.length !== 0) {
+      addToNameList(input.value);
+      updateNameCount();
+    }
+
+    input.parentNode.removeChild(input);
+    moreButton.parentNode.removeChild(moreButton);
+    finishedButton.parentNode.removeChild(finishedButton);
+    numberOfNames.parentNode.removeChild(numberOfNames);
+
+    var pickNames = document.createElement("button");
+    pickNames.setAttribute("id", "pick-names");
+    pickNames.innerHTML = "Pick a random name";
+    parent.appendChild(pickNames);
+
+    var editNames = document.createElement("button");
+    editNames.setAttribute("id", "edit-names");
+    parent.appendChild(editNames);
+    editNames.innerHTML = "Edit names on list";
+
+    var resetList = document.createElement("button");
+    resetList.setAttribute("id", "reset-list");
+    parent.appendChild(resetList);
+    resetList.innerHTML = "Reset the list";
+
+    var chosenName = document.createElement("p");
+    chosenName.setAttribute("id", "chosen-name");
+    parent.appendChild(chosenName);
+
+    makeWeightedList();
+
   }
 
   function inputListener (event) {
