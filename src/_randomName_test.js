@@ -184,6 +184,15 @@
           assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
         });
 
+        it("does not add a name if input is blank", function () {
+          this.input.value = "New Name";
+          var moreButton = document.getElementById("more-names");
+          moreButton.dispatchEvent(this.click);
+          this.finishedButton.dispatchEvent(this.click);
+
+          assert.equal(this.numberOfNames.innerHTML, "Number of names: 1");
+        });
+
         it("sends message if finished button clicked with no names", function () {
           this.finishedButton.dispatchEvent(this.click);
 
@@ -292,6 +301,16 @@
         finishedButton.dispatchEvent(this.click);
         this.pickNames = document.getElementById("pick-names");
         this.chosenName = document.getElementById("chosen-name");
+        this.weightedNames = picker.weightedNames;
+      });
+
+      it("has a weightedNames list", function () {
+        assert.isNotNull(this.weightedNames);
+      });
+
+      it("weightedNames has the correct number of items", function () {
+
+        assert.equal(this.weightedNames.length, 15);
       });
 
 
@@ -339,7 +358,7 @@
     var click = setupMouseClick();
 
     names.forEach(function (name) {
-      input.value = "New Name";
+      input.value = name;
       moreButton.dispatchEvent(click);
     });
   }

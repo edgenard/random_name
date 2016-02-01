@@ -48,8 +48,11 @@
         numberOfNames.innerHTML = 'PLEASE ADD NAMES TO LIST';
         return;
       }
-      addToNameList(input.value);
-      updateNameCount();
+      if(input.value.length !== 0) {
+        addToNameList(input.value);
+        updateNameCount();
+      }
+
 
       input.parentNode.removeChild(input);
       moreButton.parentNode.removeChild(moreButton);
@@ -74,6 +77,8 @@
       var chosenName = document.createElement("p");
       chosenName.setAttribute("id", "chosen-name");
       parent.appendChild(chosenName);
+
+      makeWeightedList();
     });
 
     var numberOfNames = document.createElement("p");
@@ -109,6 +114,14 @@
     nameCountParagraph.innerHTML = "Number of names: " + NAMES.length;
   }
 
+  function makeWeightedList() {
+    NAMES.forEach(function (name) {
+      picker.weightedNames.push(name);
+      picker.weightedNames.push(name);
+      picker.weightedNames.push(name);
+    });
+
+  }
 
   // module.exports = {
   //   initialize: initialize,
