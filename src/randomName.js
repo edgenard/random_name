@@ -31,14 +31,7 @@
 
     var moreButton = document.createElement("button");
     moreButton.setAttribute("id", "more-names");
-    moreButton.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      if(input.value.length === 0) return;
-      addToNameList(input.value);
-      updateNameCount();
-      input.value = '';
-    });
+    moreButton.addEventListener("click", moreNames);
 
     var closeButton = document.createElement("button");
     closeButton.setAttribute("id", "finished-with-names");
@@ -90,6 +83,16 @@
     parent.appendChild(moreButton);
     parent.appendChild(closeButton);
     parent.appendChild(numberOfNames);
+  }
+
+
+  function moreNames(event){
+    event.preventDefault();
+    var input = document.getElementById("name-input");
+    if(input.value.length === 0) return;
+    addToNameList(input.value);
+    updateNameCount();
+    input.value = '';
   }
 
   function inputListener (event) {
