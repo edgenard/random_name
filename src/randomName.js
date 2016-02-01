@@ -33,9 +33,9 @@
     moreButton.setAttribute("id", "more-names");
     moreButton.addEventListener("click", moreNames);
 
-    var closeButton = document.createElement("button");
-    closeButton.setAttribute("id", "finished-with-names");
-    closeButton.addEventListener("click", function (event) {
+    var finishedButton = document.createElement("button");
+    finishedButton.setAttribute("id", "finished-with-names");
+    finishedButton.addEventListener("click", function (event) {
       event.preventDefault();
       if(input.value.length === 0 && picker.names.length === 0) {
         numberOfNames.innerHTML = 'PLEASE ADD NAMES TO LIST';
@@ -49,7 +49,7 @@
 
       input.parentNode.removeChild(input);
       moreButton.parentNode.removeChild(moreButton);
-      closeButton.parentNode.removeChild(closeButton);
+      finishedButton.parentNode.removeChild(finishedButton);
       numberOfNames.parentNode.removeChild(numberOfNames);
 
       var pickNames = document.createElement("button");
@@ -78,10 +78,10 @@
     numberOfNames.setAttribute("id", "number-of-names");
 
     moreButton.innerHTML = "Add name to list";
-    closeButton.innerHTML = "Finished adding names";
+    finishedButton.innerHTML = "Finished adding names";
     parent.appendChild(input);
     parent.appendChild(moreButton);
-    parent.appendChild(closeButton);
+    parent.appendChild(finishedButton);
     parent.appendChild(numberOfNames);
   }
 
