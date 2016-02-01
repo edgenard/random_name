@@ -230,6 +230,14 @@
           assert.equal(pickNames.nodeName, "BUTTON");
         });
 
+        it("button to pick names has the right text", function () {
+          this.input.value = "New Name";
+          this.finishedButton.dispatchEvent(this.click);
+          var pickNames = document.getElementById("pick-names");
+
+          assert.equal(pickNames.innerHTML, "Pick a random name");
+        });
+
         it("adds a button to edit list", function () {
           this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
@@ -238,12 +246,28 @@
           assert.equal(editNames.nodeName, "BUTTON");
         });
 
+        it("edit button has the right text", function () {
+          this.input.value = "New Name";
+          this.finishedButton.dispatchEvent(this.click);
+          var editNames = document.getElementById("edit-names");
+
+          assert.equal(editNames.innerHTML, "Edit names on list");
+        });
+
         it("adds a button to reset list", function () {
           this.input.value = "New Name";
           this.finishedButton.dispatchEvent(this.click);
           var resetList = document.getElementById("reset-list");
 
           assert.equal(resetList.nodeName, "BUTTON");
+        });
+
+        it("reset button has the right text", function () {
+          this.input.value = "New Name";
+          this.finishedButton.dispatchEvent(this.click);
+          var resetList = document.getElementById("reset-list");
+
+          assert.equal(resetList.innerHTML, "Reset the list");
         });
 
         it('adds a paragraph to show chosen name', function () {
