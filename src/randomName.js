@@ -7,7 +7,7 @@
 
   var picker = window.RandomPicker;
 
-  var NAMES;
+
 
   picker.initialize = function (element) {
     var button = document.createElement("button");
@@ -15,7 +15,7 @@
     button.innerHTML = "Click to add names";
     element.classList.add("random-name-picker");
     button.addEventListener("click", startAddingNames);
-    NAMES = [];
+    this.names = [];
     this.weightedNames = [];
   };
 
@@ -44,7 +44,7 @@
     closeButton.setAttribute("id", "finished-with-names");
     closeButton.addEventListener("click", function (event) {
       event.preventDefault();
-      if(input.value.length === 0 && NAMES.length === 0) {
+      if(input.value.length === 0 && picker.names.length === 0) {
         numberOfNames.innerHTML = 'PLEASE ADD NAMES TO LIST';
         return;
       }
@@ -106,16 +106,16 @@
   }
 
   function addToNameList(name) {
-    NAMES.push(name);
+    picker.names.push(name);
   }
 
   function updateNameCount() {
     var nameCountParagraph = document.getElementById("number-of-names");
-    nameCountParagraph.innerHTML = "Number of names: " + NAMES.length;
+    nameCountParagraph.innerHTML = "Number of names: " + picker.names.length;
   }
 
   function makeWeightedList() {
-    NAMES.forEach(function (name) {
+    picker.names.forEach(function (name) {
       picker.weightedNames.push(name);
       picker.weightedNames.push(name);
       picker.weightedNames.push(name);
