@@ -75,10 +75,7 @@
       updateNameCount();
     }
 
-    input.parentNode.removeChild(input);
-    moreButton.parentNode.removeChild(moreButton);
-    finishedButton.parentNode.removeChild(finishedButton);
-    numberOfNames.parentNode.removeChild(numberOfNames);
+    clearOut(parent);
 
     var pickNames = document.createElement("button");
     pickNames.setAttribute("id", "pick-names");
@@ -102,6 +99,16 @@
     makeWeightedList();
 
   }
+
+  function clearOut(element){
+    var firstChild = element.firstChild;
+    while (firstChild){
+      element.removeChild(firstChild);
+      firstChild = element.firstChild;
+    }
+  }
+
+
 
   function inputListener (event) {
     if(event.key === "Enter" || event.keyIdentifier === "Enter"){
