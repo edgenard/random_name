@@ -86,24 +86,44 @@
   }
 
   function addElementsToPickNames(parent){
-    var pickNames = document.createElement("button");
-    pickNames.setAttribute("id", "pick-names");
-    pickNames.innerHTML = "Pick a random name";
-    parent.appendChild(pickNames);
+    addElement({
+      tag: "button",
+      parentElement: parent,
+      attributes: { id: "pick-names"},
+      innerHTML: "Pick a random name"
+    });
 
-    var editNames = document.createElement("button");
-    editNames.setAttribute("id", "edit-names");
-    parent.appendChild(editNames);
-    editNames.innerHTML = "Edit names on list";
+    addElement({
+      tag: "button",
+      parentElement: parent,
+      attributes: { id: "edit-names"},
+      innerHTML: "Edit names on list"
+    });
 
-    var resetList = document.createElement("button");
-    resetList.setAttribute("id", "reset-list");
-    parent.appendChild(resetList);
-    resetList.innerHTML = "Reset the list";
+    addElement({
+      tag: "button",
+      parentElement: parent,
+      attributes: {id: "reset-list"},
+      innerHTML: "Reset the list"
+    });
 
-    var chosenName = document.createElement("p");
-    chosenName.setAttribute("id", "chosen-name");
-    parent.appendChild(chosenName);
+    addElement({
+      tag: "p",
+      parentElement: parent,
+      attributes: { id: "chosen-name"}
+    });
+  }
+
+  function addElement(options){
+    var element = document.createElement(options.tag);
+    var attributes = options.attributes;
+    for (var attribute in attributes) {
+      if (attributes.hasOwnProperty(attribute)) {
+        element.setAttribute(attribute + "", options.attributes[attribute]);
+      }
+    }
+    element.innerHTML = options.innerHTML;
+    options.parentElement.appendChild(element);
   }
 
   function inputListener (event) {
