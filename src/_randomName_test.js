@@ -309,8 +309,19 @@
       });
 
       it("weightedNames has the correct number of items", function () {
-
         assert.equal(this.weightedNames.length, 15);
+      });
+
+      it("clicking the pick-names button shows the chosen name", function () {
+        this.pickNames.dispatchEvent(this.click);
+
+        assert.include(picker.names, this.chosenName.innerHTML, "Chosen names is one of the names entered");
+      });
+
+      it("weightedNames has one less after picking name", function () {
+        this.pickNames.dispatchEvent(this.click);
+
+        assert.equal(this.weightedNames.length, 14, "WeightedNames list should have one less item");
       });
 
 

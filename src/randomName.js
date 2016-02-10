@@ -86,11 +86,14 @@
   }
 
   function addElementsToPickNames(parent){
-    addElement({
-      tag: "button",
-      parentElement: parent,
-      attributes: { id: "pick-names"},
-      innerHTML: "Pick a random name"
+    var pickNames = document.createElement("button");
+    pickNames.setAttribute("id", "pick-names");
+    pickNames.innerHTML = "Pick a random name";
+    parent.appendChild(pickNames);
+    pickNames.addEventListener("click", function (event) {
+      event.preventDefault();
+      var name = takeOutRandomItem(picker.weightedNames);
+      chosenName.innerHTML = name;
     });
 
     addElement({
@@ -107,11 +110,16 @@
       innerHTML: "Reset the list"
     });
 
-    addElement({
-      tag: "p",
-      parentElement: parent,
-      attributes: { id: "chosen-name"}
-    });
+    var chosenName = document.createElement("p");
+    chosenName.setAttribute("id", "chosen-name");
+    parent.appendChild(chosenName);
+  }
+
+  function takeOutRandomItem(list){
+    var randomIndex = Math.round(Math.random() * list.length);
+    var name = list[randomIndex];
+    list.splice(randomIndex, 1);
+    return name;
   }
 
   function addElement(options){
