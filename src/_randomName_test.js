@@ -324,6 +324,16 @@
         assert.equal(this.weightedNames.length, 14, "WeightedNames list should have one less item");
       });
 
+      it("should say when every name has been picked", function () {
+        var length = this.weightedNames.length;
+        for (var i = 0; i < length ; i++) {
+          this.pickNames.dispatchEvent(this.click);
+        }
+
+        this.pickNames.dispatchEvent(this.click);
+
+        assert.equal(this.chosenName.innerHTML, "All names have been picked, click Reset List to pick again");
+      });
 
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);

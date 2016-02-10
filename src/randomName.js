@@ -92,6 +92,10 @@
     parent.appendChild(pickNames);
     pickNames.addEventListener("click", function (event) {
       event.preventDefault();
+      if (picker.weightedNames.length < 1){
+        chosenName.innerHTML = "All names have been picked, click Reset List to pick again";
+        return;
+      }
       var name = takeOutRandomItem(picker.weightedNames);
       chosenName.innerHTML = name;
     });
