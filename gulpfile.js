@@ -18,7 +18,7 @@ gulp.task('lint', function () {
 gulp.task('server', function () {
   browserSync.init({
     server: {
-      baseDir: "src"
+      baseDir: ""
     }
   });
 });

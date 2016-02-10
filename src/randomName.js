@@ -116,7 +116,7 @@
   }
 
   function takeOutRandomItem(list){
-    var randomIndex = Math.round(Math.random() * list.length);
+    var randomIndex = Math.floor(Math.random() * list.length);
     var name = list[randomIndex];
     list.splice(randomIndex, 1);
     return name;
