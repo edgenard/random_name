@@ -98,7 +98,7 @@
         return;
       }
       var name = takeOutRandomItem(picker.weightedNames);
-      setInterval(function () {
+      setTimeout(function () {
         chosenName.innerHTML = name;
       }, 1000);
     });
