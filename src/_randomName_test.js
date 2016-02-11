@@ -345,6 +345,12 @@
         assert.equal(this.weightedNames.length, 15);
       });
 
+      it("should say when a lsit has been reset", function () {
+        this.resetList.dispatchEvent(this.click);
+
+        assert.equal(this.chosenName.innerHTML, "The list has been reset. Click Pick a name to choose another name");
+      });
+
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
       });

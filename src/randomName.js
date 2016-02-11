@@ -116,6 +116,7 @@
       event.preventDefault();
       picker.weightedNames = [];
       makeWeightedList();
+      chosenName.innerHTML = "The list has been reset. Click Pick a name to choose another name";
     });
 
     var chosenName = document.createElement("p");
