@@ -313,10 +313,23 @@
         assert.equal(this.weightedNames.length, 15);
       });
 
-      it("clicking the pick-names button shows the chosen name", function () {
+      it("says it is choosing a name", function () {
         this.pickNames.dispatchEvent(this.click);
 
-        assert.include(picker.names, this.chosenName.innerHTML, "Chosen names is one of the names entered");
+        assert.equal(this.chosenName.innerHTML, "Choosing a name...");
+      });
+
+      it("it shows the chosen name after 1 second", function (done) {
+        this.pickNames.dispatchEvent(this.click);
+        var chosenName = this.chosenName;
+        setTimeout(function () {
+          try{
+            assert.include(picker.names, chosenName.innerHTML);
+            done();
+          } catch(e){
+            done(e);
+          }
+        }, 1100);
       });
 
       it("weightedNames has one less after picking name", function () {
