@@ -107,11 +107,15 @@
       innerHTML: "Edit names on list"
     });
 
-    addElement({
-      tag: "button",
-      parentElement: parent,
-      attributes: {id: "reset-list"},
-      innerHTML: "Reset the list"
+
+    var resetList = document.createElement("button");
+    resetList.setAttribute("id", "reset-list");
+    resetList.innerHTML = "Reset the list";
+    parent.appendChild(resetList);
+    resetList.addEventListener("click", function (event) {
+      event.preventDefault();
+      picker.weightedNames = [];
+      makeWeightedList();
     });
 
     var chosenName = document.createElement("p");

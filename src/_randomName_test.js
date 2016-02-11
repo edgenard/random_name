@@ -300,6 +300,7 @@
         this.click = setupMouseClick();
         finishedButton.dispatchEvent(this.click);
         this.pickNames = document.getElementById("pick-names");
+        this.resetList = document.getElementById("reset-list");
         this.chosenName = document.getElementById("chosen-name");
         this.weightedNames = picker.weightedNames;
       });
@@ -333,6 +334,15 @@
         this.pickNames.dispatchEvent(this.click);
 
         assert.equal(this.chosenName.innerHTML, "All names have been picked, click Reset List to pick again");
+      });
+
+      it("clicking reset list should repopulate the weightedList", function () {
+        this.pickNames.dispatchEvent(this.click);
+
+        this.resetList.dispatchEvent(this.click);
+        this.weightedNames = picker.weightedNames;
+
+        assert.equal(this.weightedNames.length, 15);
       });
 
       afterEach("Clean up Names", function () {
