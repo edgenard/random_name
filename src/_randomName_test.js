@@ -301,6 +301,7 @@
         finishedButton.dispatchEvent(this.click);
         this.pickNames = document.getElementById("pick-names");
         this.resetList = document.getElementById("reset-list");
+        this.editNames = document.getElementById("edit-names");
         this.chosenName = document.getElementById("chosen-name");
         this.weightedNames = picker.weightedNames;
       });
@@ -362,6 +363,21 @@
         this.resetList.dispatchEvent(this.click);
 
         assert.equal(this.chosenName.innerHTML, "The list has been reset. Click Pick a name to choose another name");
+      });
+
+      it("clicking edit names shows the list of names", function () {
+        this.editNames.dispatchEvent(this.click);
+
+        var namesList = document.getElementById("names-list");
+        assert.isNotNull(namesList);
+      });
+
+      it('names list has the right number of names', function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var numNames = namesList.children.length;
+
+        assert.equal(numNames, 5);
       });
 
       afterEach("Clean up Names", function () {

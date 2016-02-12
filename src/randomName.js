@@ -103,13 +103,22 @@
       }, 1000);
     });
 
-    addElement({
-      tag: "button",
-      parentElement: parent,
-      attributes: { id: "edit-names"},
-      innerHTML: "Edit names on list"
-    });
 
+    var editNames = document.createElement("button");
+    editNames.setAttribute("id", "edit-names");
+    editNames.innerHTML = "Edit names on list";
+    parent.appendChild(editNames);
+    editNames.addEventListener("click", function (event) {
+      event.preventDefault();
+      var namesList = document.createElement("ul");
+      namesList.setAttribute("id", "names-list");
+      parent.appendChild(namesList);
+      picker.names.forEach(function (name) {
+        var listItem = document.createElement("li");
+        listItem.innerHTML = name;
+        namesList.appendChild(listItem);
+      });
+    });
 
     var resetList = document.createElement("button");
     resetList.setAttribute("id", "reset-list");
