@@ -119,6 +119,7 @@
         listItem.setAttribute("data-index", index);
         namesList.appendChild(listItem);
       });
+      namesList.addEventListener("dblclick", editThisName);
     });
 
     var resetList = document.createElement("button");
@@ -135,6 +136,14 @@
     var chosenName = document.createElement("p");
     chosenName.setAttribute("id", "chosen-name");
     parent.appendChild(chosenName);
+  }
+
+  function editThisName(event){
+    var listItem = event.target;
+    var input = document.createElement("input");
+    input.value = listItem.innerHTML;
+    listItem.innerHTML = "";
+    listItem.appendChild(input);
   }
 
   function takeOutRandomItem(list){

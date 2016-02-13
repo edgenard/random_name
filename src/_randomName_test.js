@@ -386,8 +386,19 @@
         var dataIndex;
         for (var i = 0; i < namesList.children.length; i++) {
         dataIndex = namesList.children[i].getAttribute("data-index");
-        assert.equal(dataIndex, i, "data-index should match index");
+        assert.equal(dataIndex, i);
         }
+      });
+
+      it("double-clicking on list item adds an input field as its child", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+
+        var inputField = listItem.children[0];
+
+        assert.equal(inputField.tagName, "INPUT");
       });
 
       afterEach("Clean up Names", function () {
@@ -407,7 +418,7 @@
 
   function setupDblClick(){
     var doubleClick = document.createEvent("MouseEvent");
-    doubleClick.initEvent("dblclick", false, true);
+    doubleClick.initEvent("dblclick", true, true);
     return doubleClick;
   }
 
