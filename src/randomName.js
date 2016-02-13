@@ -113,9 +113,10 @@
       var namesList = document.createElement("ul");
       namesList.setAttribute("id", "names-list");
       parent.appendChild(namesList);
-      picker.names.forEach(function (name) {
+      picker.names.forEach(function (name, index) {
         var listItem = document.createElement("li");
         listItem.innerHTML = name;
+        listItem.setAttribute("data-index", index);
         namesList.appendChild(listItem);
       });
     });

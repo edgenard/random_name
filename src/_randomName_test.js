@@ -380,6 +380,16 @@
         assert.equal(numNames, 5);
       });
 
+      it("each name has a data-index that matches list index", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var dataIndex;
+        for (var i = 0; i < namesList.children.length; i++) {
+        dataIndex = namesList.children[i].getAttribute("data-index");
+        assert.equal(dataIndex, i, "data-index should match index");
+        }
+      });
+
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
       });
@@ -393,6 +403,12 @@
     var mouseClick = document.createEvent("MouseEvent");
     mouseClick.initEvent("click", false, true);
     return mouseClick;
+  }
+
+  function setupDblClick(){
+    var doubleClick = document.createEvent("MouseEvent");
+    doubleClick.initEvent("dblclick", false, true);
+    return doubleClick;
   }
 
   function setupKeyPress(keypressed) {
