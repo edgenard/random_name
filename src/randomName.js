@@ -152,9 +152,11 @@
       event.preventDefault();
       var inputField = event.target;
       var newName = inputField.value;
-      var index = inputField.parentElement.getAttribute("data-index");
+      var listItem = inputField.parentElement;
+      var index = listItem.getAttribute("data-index");
       picker.names[index] = newName;
-      inputField.parentNode.removeChild(inputField);
+      listItem.removeChild(inputField);
+      listItem.innerHTML = newName;
     } else {
       return;
     }

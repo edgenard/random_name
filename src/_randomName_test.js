@@ -438,6 +438,19 @@
         assert.equal(picker.names[0], "Edited Name");
       });
 
+      it("updated names should be reflected on the list", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        inputField.value = "Edited Name";
+        inputField.dispatchEvent(setupKeyPress("Enter"));
+
+        assert.equal(listItem.innerHTML, "Edited Name");
+      });
+
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
       });
