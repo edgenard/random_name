@@ -401,6 +401,19 @@
         assert.equal(inputField.tagName, "INPUT");
       });
 
+      it("Hitting enter should remove the input field", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        inputField.dispatchEvent(setupKeyPress("Enter"));
+
+        assert.equal(listItem.children.length, 0);
+
+      });
+
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
       });

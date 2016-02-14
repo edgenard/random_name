@@ -144,6 +144,17 @@
     input.value = listItem.innerHTML;
     listItem.innerHTML = "";
     listItem.appendChild(input);
+    input.addEventListener("keypress", editName);
+  }
+
+  function editName(event) {
+    if (event.key === "Enter" || event.keyIdentifier === "Enter") {
+      event.preventDefault();
+      var inputField = event.target;
+      inputField.parentNode.removeChild(inputField);
+    } else {
+      return;
+    }
   }
 
   function takeOutRandomItem(list){
