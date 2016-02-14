@@ -390,6 +390,13 @@
         }
       });
 
+      it("shows instructions on how to edit names", function () {
+        this.editNames.dispatchEvent(this.click);
+        var instructions = document.getElementById("edit-instructions");
+
+        assert.equal(instructions.innerHTML, "Double click on a name to edit then hit Enter/Return to save");
+      });
+
       it("double-clicking on list item adds an input field as its child", function () {
         this.editNames.dispatchEvent(this.click);
         var namesList = document.getElementById("names-list");

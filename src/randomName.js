@@ -112,6 +112,10 @@
       event.preventDefault();
       var namesList = document.createElement("ul");
       namesList.setAttribute("id", "names-list");
+      var instructions = document.createElement("h3");
+      instructions.setAttribute("id", "edit-instructions");
+      instructions.innerHTML = "Double click on a name to edit then hit Enter/Return to save";
+      parent.appendChild(instructions);
       parent.appendChild(namesList);
       picker.names.forEach(function (name, index) {
         var listItem = document.createElement("li");
