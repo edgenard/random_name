@@ -411,7 +411,19 @@
         inputField.dispatchEvent(setupKeyPress("Enter"));
 
         assert.equal(listItem.children.length, 0);
+      });
 
+      it("hitting enter should update names list", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        inputField.value = "Edited Name";
+        inputField.dispatchEvent(setupKeyPress("Enter"));
+
+        assert.equal(picker.names[0], "Edited Name");
       });
 
       afterEach("Clean up Names", function () {

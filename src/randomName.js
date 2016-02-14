@@ -151,6 +151,9 @@
     if (event.key === "Enter" || event.keyIdentifier === "Enter") {
       event.preventDefault();
       var inputField = event.target;
+      var newName = inputField.value;
+      var index = inputField.parentElement.getAttribute("data-index");
+      picker.names[index] = newName;
       inputField.parentNode.removeChild(inputField);
     } else {
       return;
