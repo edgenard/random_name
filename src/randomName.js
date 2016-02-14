@@ -174,18 +174,6 @@
     return name;
   }
 
-  function addElement(options){
-    var element = document.createElement(options.tag);
-    var attributes = options.attributes;
-    for (var attribute in attributes) {
-      if (attributes.hasOwnProperty(attribute)) {
-        element.setAttribute(attribute + "", options.attributes[attribute]);
-      }
-    }
-    element.innerHTML = options.innerHTML;
-    options.parentElement.appendChild(element);
-  }
-
   function inputListener (event) {
     if(event.key === "Enter" || event.keyIdentifier === "Enter"){
       event.preventDefault();
