@@ -401,6 +401,18 @@
         assert.equal(inputField.tagName, "INPUT");
       });
 
+      it("the input field has the name as its value", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        var name = inputField.value;
+
+        assert.equal(name, picker.names[0]);
+      });
+
       it("Hitting enter should remove the input field", function () {
         this.editNames.dispatchEvent(this.click);
         var namesList = document.getElementById("names-list");
