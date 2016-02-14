@@ -157,6 +157,7 @@
       picker.names[index] = newName;
       listItem.removeChild(inputField);
       listItem.innerHTML = newName;
+      makeWeightedList();
     } else {
       return;
     }
@@ -204,6 +205,7 @@
   }
 
   function makeWeightedList() {
+    picker.weightedNames = [];
     picker.names.forEach(function (name) {
       picker.weightedNames.push(name);
       picker.weightedNames.push(name);

@@ -451,6 +451,33 @@
         assert.equal(listItem.innerHTML, "Edited Name");
       });
 
+      it("updated names should be reflected on weighted list", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        inputField.value = "Edited Name";
+        inputField.dispatchEvent(setupKeyPress("Enter"));
+
+        assert.include(picker.weightedNames, "Edited Name");
+      });
+
+      it("old name should not be in weighted list", function () {
+        this.editNames.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var listItem = namesList.children[0];
+        var oldName = listItem.innerHTML;
+        listItem.dispatchEvent(setupDblClick());
+        var inputField = listItem.children[0];
+
+        inputField.value = "Edited Name";
+        inputField.dispatchEvent(setupKeyPress("Enter"));
+
+        assert.notInclude(picker.weightedNames, oldName);
+      });
+
       afterEach("Clean up Names", function () {
         this.element.parentNode.removeChild(this.element);
       });
