@@ -303,15 +303,14 @@
         this.resetList = document.getElementById("reset-list");
         this.editNames = document.getElementById("edit-names");
         this.chosenName = document.getElementById("chosen-name");
-        this.weightedNames = picker.weightedNames;
       });
 
       it("has a weightedNames list", function () {
-        assert.isNotNull(this.weightedNames);
+        assert.isNotNull(picker.weightedNames);
       });
 
       it("weightedNames has the correct number of items", function () {
-        assert.equal(this.weightedNames.length, 15);
+        assert.equal(picker.weightedNames.length, 15);
       });
 
       it("says it is choosing a name", function () {
@@ -336,11 +335,11 @@
       it("weightedNames has one less after picking name", function () {
         this.pickNames.dispatchEvent(this.click);
 
-        assert.equal(this.weightedNames.length, 14, "WeightedNames list should have one less item");
+        assert.equal(picker.weightedNames.length, 14, "WeightedNames list should have one less item");
       });
 
       it("should say when every name has been picked", function () {
-        var length = this.weightedNames.length;
+        var length = picker.weightedNames.length;
         for (var i = 0; i < length ; i++) {
           this.pickNames.dispatchEvent(this.click);
         }
@@ -354,9 +353,8 @@
         this.pickNames.dispatchEvent(this.click);
 
         this.resetList.dispatchEvent(this.click);
-        this.weightedNames = picker.weightedNames;
 
-        assert.equal(this.weightedNames.length, 15);
+        assert.equal(picker.weightedNames.length, 15);
       });
 
       it("should say when a lsit has been reset", function () {
