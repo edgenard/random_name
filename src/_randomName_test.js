@@ -382,6 +382,7 @@
         this.editNames.dispatchEvent(this.click);
         this.namesList = document.getElementById("names-list");
         this.firstName = this.namesList.children[0];
+        this.finishedEditing = document.getElementById("finished-editing");
       });
 
       afterEach("Clean up Names", function () {
@@ -396,6 +397,10 @@
         var numNames = this.namesList.children.length;
 
         assert.equal(numNames, 5);
+      });
+
+      it("has a button to finish editing names", function () {
+        assert.equal(this.finishedEditing.tagName, "BUTTON");
       });
 
       it("each name has a data-index that matches list index", function () {

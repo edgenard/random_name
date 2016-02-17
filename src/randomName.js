@@ -124,6 +124,10 @@
         namesList.appendChild(listItem);
       });
       namesList.addEventListener("dblclick", editThisName);
+
+      var finishedEditing = document.createElement("button");
+      finishedEditing.setAttribute("id", "finished-editing");
+      parent.appendChild(finishedEditing);
     });
 
     var resetList = document.createElement("button");
