@@ -381,6 +381,7 @@
         this.editNames = document.getElementById("edit-names");
         this.editNames.dispatchEvent(this.click);
         this.namesList = document.getElementById("names-list");
+        this.firstName = this.namesList.children[0];
       });
 
       afterEach("Clean up Names", function () {
@@ -415,18 +416,16 @@
 
 
       it("double-clicking on list item adds an input field as its child", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(this.doubleClick);
+        this.firstName.dispatchEvent(this.doubleClick);
 
-        var inputField = listItem.children[0];
+        var inputField = this.firstName.children[0];
 
         assert.equal(inputField.tagName, "INPUT");
       });
 
       it("the input field has the name as its value", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(this.doubleClick);
-        var inputField = listItem.children[0];
+        this.firstName.dispatchEvent(this.doubleClick);
+        var inputField = this.firstName.children[0];
 
         var name = inputField.value;
 
@@ -434,19 +433,17 @@
       });
 
       it("Hitting enter should remove the input field", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(this.doubleClick);
-        var inputField = listItem.children[0];
+        this.firstName.dispatchEvent(this.doubleClick);
+        var inputField = this.firstName.children[0];
 
         inputField.dispatchEvent(setupKeyPress("Enter"));
 
-        assert.equal(listItem.children.length, 0);
+        assert.equal(this.firstName.children.length, 0);
       });
 
       it("hitting enter should update names list", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
-        var inputField = listItem.children[0];
+        this.firstName.dispatchEvent(setupDblClick());
+        var inputField = this.firstName.children[0];
 
         inputField.value = "Edited Name";
         inputField.dispatchEvent(setupKeyPress("Enter"));
@@ -455,20 +452,18 @@
       });
 
       it("updated names should be reflected on the list", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(this.doubleClick);
-        var inputField = listItem.children[0];
+        this.firstName.dispatchEvent(this.doubleClick);
+        var inputField = this.firstName.children[0];
 
         inputField.value = "Edited Name";
         inputField.dispatchEvent(setupKeyPress("Enter"));
 
-        assert.equal(listItem.innerHTML, "Edited Name");
+        assert.equal(this.firstName.innerHTML, "Edited Name");
       });
 
       it("updated names should be reflected on weighted list", function () {
-        var listItem = this.namesList.children[0];
-        listItem.dispatchEvent(this.doubleClick);
-        var inputField = listItem.children[0];
+        this.firstName.dispatchEvent(this.doubleClick);
+        var inputField = this.firstName.children[0];
 
         inputField.value = "Edited Name";
         inputField.dispatchEvent(setupKeyPress("Enter"));
@@ -477,10 +472,9 @@
       });
 
       it("old name should not be in weighted list", function () {
-        var listItem = this.namesList.children[0];
-        var oldName = listItem.innerHTML;
-        listItem.dispatchEvent(this.doubleClick);
-        var inputField = listItem.children[0];
+        var oldName = this.firstName.innerHTML;
+        this.firstName.dispatchEvent(this.doubleClick);
+        var inputField = this.firstName.children[0];
 
         inputField.value = "Edited Name";
         inputField.dispatchEvent(setupKeyPress("Enter"));
