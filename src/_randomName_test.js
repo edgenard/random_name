@@ -403,6 +403,10 @@
         assert.equal(this.finishedEditing.tagName, "BUTTON");
       });
 
+      it("the finished editing buttton says what it is", function () {
+        assert.equal(this.finishedEditing.innerHTML, "Finished editing names");
+      });
+
       it("clicking finished editing button removes editing elements", function () {
         this.finishedEditing.dispatchEvent(this.click);
         var namesList = document.getElementById("names-list");

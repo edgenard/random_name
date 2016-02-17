@@ -127,8 +127,10 @@
 
       var finishedEditing = document.createElement("button");
       finishedEditing.setAttribute("id", "finished-editing");
+      finishedEditing.innerHTML = "Finished editing names";
       parent.appendChild(finishedEditing);
       finishedEditing.addEventListener("click", removeEditingElements);
+
     });
 
     var resetList = document.createElement("button");
