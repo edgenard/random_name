@@ -128,6 +128,7 @@
       var finishedEditing = document.createElement("button");
       finishedEditing.setAttribute("id", "finished-editing");
       parent.appendChild(finishedEditing);
+      finishedEditing.addEventListener("click", removeEditingElements);
     });
 
     var resetList = document.createElement("button");
@@ -169,6 +170,18 @@
     } else {
       return;
     }
+  }
+
+  function removeEditingElements(event) {
+    event.preventDefault();
+    var finishedEditing = document.getElementById("finished-editing");
+    var namesList = document.getElementById("names-list");
+    var instructions = document.getElementById("edit-instructions");
+    var parent = finishedEditing.parentNode;
+    parent.removeChild(instructions);
+    parent.removeChild(namesList);
+    parent.removeChild(finishedEditing);
+
   }
 
   function takeOutRandomItem(list){

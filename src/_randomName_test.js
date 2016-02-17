@@ -403,6 +403,17 @@
         assert.equal(this.finishedEditing.tagName, "BUTTON");
       });
 
+      it("clicking finished editing button removes editing elements", function () {
+        this.finishedEditing.dispatchEvent(this.click);
+        var namesList = document.getElementById("names-list");
+        var instructions = document.getElementById("edit-instructions");
+        var finishButton = document.getElementById("finished-editing");
+
+        assert.isNull(namesList);
+        assert.isNull(instructions);
+        assert.isNull(finishButton);
+      });
+
       it("each name has a data-index that matches list index", function () {
         var dataIndex;
 
