@@ -305,6 +305,10 @@
         this.chosenName = document.getElementById("chosen-name");
       });
 
+      afterEach("Clean up Names", function () {
+        this.element.parentNode.removeChild(this.element);
+      });
+
       it("has a weightedNames list", function () {
         assert.isNotNull(picker.weightedNames);
       });
@@ -357,49 +361,62 @@
         assert.equal(picker.weightedNames.length, 15);
       });
 
-      it("should say when a lsit has been reset", function () {
+      it("should say when a list has been reset", function () {
         this.resetList.dispatchEvent(this.click);
 
         assert.equal(this.chosenName.innerHTML, "The list has been reset. Click Pick a name to choose another name");
       });
 
-      it("clicking edit names shows the list of names", function () {
-        this.editNames.dispatchEvent(this.click);
+    });
 
-        var namesList = document.getElementById("names-list");
-        assert.isNotNull(namesList);
+    describe("Editing Names", function () {
+      beforeEach("Setup for editing names", function () {
+        this.element = document.createElement("div");
+        setupApp(this.element);
+        addNamesToList();
+        var finishedButton = document.getElementById("finished-with-names");
+        this.click = setupMouseClick();
+        this.doubleClick = setupDblClick();
+        finishedButton.dispatchEvent(this.click);
+        this.editNames = document.getElementById("edit-names");
+        this.editNames.dispatchEvent(this.click);
+        this.namesList = document.getElementById("names-list");
+      });
+
+      afterEach("Clean up Names", function () {
+        this.element.parentNode.removeChild(this.element);
+      });
+
+      it("clicking edit names shows the list of names", function () {
+        assert.isNotNull(this.namesList);
       });
 
       it('names list has the right number of names', function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var numNames = namesList.children.length;
+        var numNames = this.namesList.children.length;
 
         assert.equal(numNames, 5);
       });
 
       it("each name has a data-index that matches list index", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
         var dataIndex;
-        for (var i = 0; i < namesList.children.length; i++) {
-        dataIndex = namesList.children[i].getAttribute("data-index");
-        assert.equal(dataIndex, i);
+
+        for (var i = 0; i < this.namesList.children.length; i++) {
+          dataIndex = this.namesList.children[i].getAttribute("data-index");
+          assert.equal(dataIndex, i);
         }
+
       });
 
       it("shows instructions on how to edit names", function () {
-        this.editNames.dispatchEvent(this.click);
         var instructions = document.getElementById("edit-instructions");
 
         assert.equal(instructions.innerHTML, "Double click on a name to edit then hit Enter/Return to save");
       });
 
+
       it("double-clicking on list item adds an input field as its child", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
+        var listItem = this.namesList.children[0];
+        listItem.dispatchEvent(this.doubleClick);
 
         var inputField = listItem.children[0];
 
@@ -407,10 +424,8 @@
       });
 
       it("the input field has the name as its value", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
+        var listItem = this.namesList.children[0];
+        listItem.dispatchEvent(this.doubleClick);
         var inputField = listItem.children[0];
 
         var name = inputField.value;
@@ -419,10 +434,8 @@
       });
 
       it("Hitting enter should remove the input field", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
+        var listItem = this.namesList.children[0];
+        listItem.dispatchEvent(this.doubleClick);
         var inputField = listItem.children[0];
 
         inputField.dispatchEvent(setupKeyPress("Enter"));
@@ -431,9 +444,7 @@
       });
 
       it("hitting enter should update names list", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
+        var listItem = this.namesList.children[0];
         listItem.dispatchEvent(setupDblClick());
         var inputField = listItem.children[0];
 
@@ -444,10 +455,8 @@
       });
 
       it("updated names should be reflected on the list", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
+        var listItem = this.namesList.children[0];
+        listItem.dispatchEvent(this.doubleClick);
         var inputField = listItem.children[0];
 
         inputField.value = "Edited Name";
@@ -457,10 +466,8 @@
       });
 
       it("updated names should be reflected on weighted list", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
-        listItem.dispatchEvent(setupDblClick());
+        var listItem = this.namesList.children[0];
+        listItem.dispatchEvent(this.doubleClick);
         var inputField = listItem.children[0];
 
         inputField.value = "Edited Name";
@@ -470,11 +477,9 @@
       });
 
       it("old name should not be in weighted list", function () {
-        this.editNames.dispatchEvent(this.click);
-        var namesList = document.getElementById("names-list");
-        var listItem = namesList.children[0];
+        var listItem = this.namesList.children[0];
         var oldName = listItem.innerHTML;
-        listItem.dispatchEvent(setupDblClick());
+        listItem.dispatchEvent(this.doubleClick);
         var inputField = listItem.children[0];
 
         inputField.value = "Edited Name";
@@ -483,12 +488,7 @@
         assert.notInclude(picker.weightedNames, oldName);
       });
 
-      afterEach("Clean up Names", function () {
-        this.element.parentNode.removeChild(this.element);
-      });
     });
-
-
 
   });
 
