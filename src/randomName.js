@@ -119,9 +119,11 @@
       parent.appendChild(namesList);
       picker.names.forEach(function (name, index) {
         var listItem = document.createElement("li");
+        var deleteButton = document.createElement("button");
         listItem.innerHTML = name;
         listItem.setAttribute("data-index", index);
         namesList.appendChild(listItem);
+        namesList.appendChild(deleteButton);
       });
       namesList.addEventListener("dblclick", editThisName);
 

@@ -394,7 +394,7 @@
       });
 
       it('names list has the right number of names', function () {
-        var numNames = this.namesList.children.length;
+        var numNames = document.querySelectorAll("#names-list li").length;
 
         assert.equal(numNames, 5);
       });
@@ -420,10 +420,11 @@
 
       it("each name has a data-index that matches list index", function () {
         var dataIndex;
-
-        for (var i = 0; i < this.namesList.children.length; i++) {
+        var number = 0;
+        for (var i = 0; i < this.namesList.children.length; i += 2) {
           dataIndex = this.namesList.children[i].getAttribute("data-index");
-          assert.equal(dataIndex, i);
+          assert.equal(dataIndex, number);
+          number += 1;
         }
 
       });
@@ -500,6 +501,14 @@
         inputField.dispatchEvent(setupKeyPress("Enter"));
 
         assert.notInclude(picker.weightedNames, oldName);
+      });
+
+      it("each name has a delete button after it", function () {
+        for (var i = 0; i < this.namesList.children.length; i += 2) {
+          var child = this.namesList.children[i];
+          var button = child.nextElementSibling;
+          assert.equal(button.tagName, "BUTTON");
+        }
       });
 
     });
