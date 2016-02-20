@@ -505,9 +505,17 @@
 
       it("each name has a delete button after it", function () {
         for (var i = 0; i < this.namesList.children.length; i += 2) {
-          var child = this.namesList.children[i];
-          var button = child.nextElementSibling;
+          var name = this.namesList.children[i];
+          var button = name.nextElementSibling;
           assert.equal(button.tagName, "BUTTON");
+        }
+      });
+
+      it("each delete button has the name of person on it", function () {
+        for (var i = 0; i < this.namesList.children.length; i += 2) {
+          var name = this.namesList.children[i];
+          var button = name.nextElementSibling;
+          assert.equal(button.innerHTML,  "Delete " + name.innerHTML);
         }
       });
 
