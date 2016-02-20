@@ -128,6 +128,7 @@
         namesList.appendChild(deleteButton);
       });
       namesList.addEventListener("dblclick", editThisName);
+      namesList.addEventListener("click", deleteThisName);
 
       var finishedEditing = document.createElement("button");
       finishedEditing.setAttribute("id", "finished-editing");
@@ -176,6 +177,14 @@
     } else {
       return;
     }
+  }
+
+  function deleteThisName(event){
+    event.preventDefault();
+    var button = event.target;
+    if(button.tagName !== "BUTTON") return;
+    var index = button.dataset.index;
+    picker.names.splice(index, 1);
   }
 
   function removeEditingElements(event) {

@@ -527,13 +527,20 @@
           }
       });
 
+      it("clicking delete button deletes from master name list",function () {
+        var deleteButton = document.querySelector("#names-list button");
+        deleteButton.dispatchEvent(this.click);
+
+        assert.equal(picker.names.length, 4);
+      });
+
     });
 
   });
 
   function setupMouseClick(){
     var mouseClick = document.createEvent("MouseEvent");
-    mouseClick.initEvent("click", false, true);
+    mouseClick.initEvent("click", true, true);
     return mouseClick;
   }
 
