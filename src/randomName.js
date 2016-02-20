@@ -123,6 +123,7 @@
         deleteButton.innerHTML = "Delete " + name;
         listItem.innerHTML = name;
         listItem.setAttribute("data-index", index);
+        deleteButton.setAttribute("data-index", index);
         namesList.appendChild(listItem);
         namesList.appendChild(deleteButton);
       });

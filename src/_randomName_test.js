@@ -519,6 +519,14 @@
         }
       });
 
+      it("each delete button has the right data index", function () {
+          var buttons = document.querySelectorAll("#names-list button");
+          for (var i = 0; i < buttons.length; i++) {
+            var dataIndex = buttons[i].getAttribute("data-index");
+            assert.equal(dataIndex, i);
+          }
+      });
+
     });
 
   });
