@@ -6,13 +6,9 @@
     <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
+    <header><a href="//emmanuelgenard.com">Back to emmanuelgenard.com</a></header>
     <main>
-        <h1>The Random Student Picker Chooses:</h1>
 
-        <h2 id="choice">Choice</h2>
-        <button id="chooser">Choose a student</button>
-
-        <div id="testing"></div>
     </main>
 
 
@@ -20,37 +16,7 @@
     <script>
       RandomPicker.initialize(document.getElementById("testing"));
     </script>
-    <script>
-        var studentNames = ["Emmanuella", "Dishelle", "Da'Ron", "Patience", "Travis", "Jemar", "Tia", "Garyl", "Mohammed",
-            "Maximilian", "Zaire", "Araceli", "Ashley", "Alaya", "Trevon"];
 
-        //This function uses loops to show to students how to use them.
-         function weightedList(list) {
-            var weighted = [];
-            var numberOfItems= list.length;
-            for (var i = 0; i < numberOfItems; i++) {
-                for (var j = 0; j < 2 ; j++) {
-                    weighted.push(list[i]);
-                }
-            }
-            return weighted;
-        };
-
-        var picker = function studentPicker(studentList){
-            var choice = Math.round(Math.random() * studentList.length);
-            console.log(studentList);
-            return studentList.splice(choice, 1);
-        };
-
-
-        var element = document.getElementById("choice");
-        var button = document.getElementById("chooser");
-        var weightedStudents = weightedList(studentNames);
-        button.addEventListener("click", function (e) {
-            e.preventDefault();
-            element.innerHTML = picker(weightedStudents);
-        })
-    </script>
 
 
 </body>
