@@ -527,11 +527,22 @@
           }
       });
 
-      it("clicking delete button deletes from master name list",function () {
+      it("delete removes name from master name list",function () {
         var deleteButton = document.querySelector("#names-list button");
         deleteButton.dispatchEvent(this.click);
 
         assert.equal(picker.names.length, 4);
+      });
+
+      it("delete removes name and button immediately from html", function () {
+        var deleteButton = document.querySelector("#names-list button");
+        var numberOfChildren = this.namesList.children.length;
+
+        deleteButton.dispatchEvent(this.click);
+        var newNumberOfChildren = document.getElementById("names-list").children.length;
+
+        assert.equal(newNumberOfChildren, numberOfChildren - 2);
+
       });
 
     });

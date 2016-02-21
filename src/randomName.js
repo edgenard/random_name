@@ -184,6 +184,11 @@
     var button = event.target;
     if(button.tagName !== "BUTTON") return;
     var index = button.dataset.index;
+    var nameListing = button.previousElementSibling;
+    if (nameListing.tagName === "LI" && nameListing.dataset.index === index) {
+      nameListing.parentElement.removeChild(nameListing);
+      button.parentElement.removeChild(button);
+    }
     picker.names.splice(index, 1);
   }
 
