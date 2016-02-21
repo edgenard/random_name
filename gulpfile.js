@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-var browserSync = require('browser-sync').create();
-var Server = require('karma').Server;
+var exec = require("gulp-exec");
+var KarmaServer = require('karma').Server;
 var runner = require('karma').runner;
 
 gulp.task('default',["lint"], function() {
@@ -16,15 +16,11 @@ gulp.task('lint', function () {
 });
 
 gulp.task('server', function () {
-  browserSync.init({
-    server: {
-      baseDir: ""
-    }
-  });
+  
 });
 
 gulp.task('karma', function(done) {
-  new Server({
+  new KarmaServer({
     configFile: __dirname + '/karma.conf.js'
   }, done).start();
 });
