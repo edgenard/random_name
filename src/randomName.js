@@ -156,6 +156,7 @@
 
   function editThisName(event){
     var listItem = event.target;
+    if(listItem.tagName !== "LI") return;
     var input = document.createElement("input");
     input.value = listItem.innerHTML;
     listItem.innerHTML = "";
