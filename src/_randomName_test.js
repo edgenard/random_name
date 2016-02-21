@@ -542,9 +542,15 @@
         var newNumberOfChildren = document.getElementById("names-list").children.length;
 
         assert.equal(newNumberOfChildren, numberOfChildren - 2);
-
       });
 
+      it("delete updates the weightedList", function () {
+        var deleteButton = document.querySelector("#names-list button");
+
+        deleteButton.dispatchEvent(this.click);
+
+        assert.notInclude(picker.weightedNames, "Joey");
+      });
     });
 
   });

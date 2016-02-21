@@ -191,6 +191,7 @@
       button.parentElement.removeChild(button);
     }
     picker.names.splice(index, 1);
+    makeWeightedList();
   }
 
   function removeEditingElements(event) {
