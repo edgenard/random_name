@@ -1,0 +1,49 @@
+.random-name-picker {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  font-family:inherit;
+  min-width: 80%;
+}
+
+.random-name-picker button {
+  font-family: inherit;
+  font-size: inherit;
+  border: 2px solid #111;
+  outline: none;
+  background: #ffbf47;
+}
+
+.random-name-picker button:hover {
+  background:#ff6347;
+}
+
+.random-name-picker input {
+  padding: 5px;
+  font-size: inherit;
+}
+
+.random-name-picker h3, .random-name-picker ul {
+  flex-basis: 100%;
+}
+
+.random-name-picker ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
+}
+
+.random-name-picker ul > * {
+  flex-basis: 50%;
+}
+
+.random-name-picker ul li {
+  border-bottom: 1px solid #ffbf47;
+}
+
+.random-name-picker ul button {
+  max-width: 100px;
+}
