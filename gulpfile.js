@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-var exec = require("gulp-exec");
+var exec = require("child_process").exec;
 var KarmaServer = require('karma').Server;
 var runner = require('karma').runner;
 
@@ -15,8 +15,11 @@ gulp.task('lint', function () {
         .pipe(jshint.reporter("fail"));
 });
 
-gulp.task('server', function () {
-  
+gulp.task('server', function (cb) {
+  exec("node node_modules/http-server/bin/http-server .", function (err) {
+    if (err) return cb(err);
+    cb();
+  });
 });
 
 gulp.task('karma', function(done) {
