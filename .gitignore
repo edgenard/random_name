@@ -13,3 +13,6 @@ node_modules/utf-8-validate/build/
 
 #Notes
 notes.txt
+
+#Adding node modules in case that caused page build error
+node_modules/
